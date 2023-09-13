@@ -53,23 +53,17 @@ export const del = (goodsId) => {
 //管理员冻结商品
 export const admin_freeze = (goodsId) => {
     return request({
-        url: baseurl + "/admin/freeze",
+        url: baseurl + "/admin/freeze?goodsId="+goodsId,
         method: "post",
         headers: headers,
-        data: {
-            goodsId: goodsId
-        }
     })
 }
 //管理员解冻商品
 export const admin_unfreeze = (goodsId) => {
     return request({
-        url: baseurl + "/admin/unfreeze",
+        url: baseurl + "/admin/unfreeze?goodsId="+goodsId,
         method: "post",
-        headers: headers,
-        data: {
-            goodsId: goodsId
-        }
+        headers: headers
     })
 }
 //游客获取单个商品信息

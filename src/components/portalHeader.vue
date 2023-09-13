@@ -91,7 +91,7 @@
 </template>
 <script>
 import {api_user_checkToken} from "@/api/user_base";
-
+import * as api_goodsCategories from "@/api/goods_categories"
 export default {
   name: "portalHeader",
   data() {
@@ -109,7 +109,7 @@ export default {
   },
   methods: {
     load() {
-      this.request.get("/goodsCategories/").then(res=>{
+      api_goodsCategories.getList().then(res=>{
         const data = res.data
         for (let i = 0; i < data.length; i++) {
           let name = data[i].name

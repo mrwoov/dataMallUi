@@ -44,3 +44,9 @@ export const admin_query = (data, page_data) => {
         }
     })
 }
+export const getList = () => {
+    return request({
+        url: baseurl + "/",
+        method: "get"
+    })
+}

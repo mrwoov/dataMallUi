@@ -22,7 +22,7 @@
         <span slot="title">商品管理</span>
       </template>
       <el-menu-item index="/admin/categories">商品类别管理</el-menu-item>
-      <el-menu-item index="/admin/item">商品管理</el-menu-item>
+      <el-menu-item index="/admin/goods">商品管理</el-menu-item>
     </el-submenu>
   </el-menu>
 </template>

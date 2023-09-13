@@ -61,6 +61,11 @@ export default {
             this.$message.error("无权限");
             router.back();
           }
+        }).catch(res =>{
+          this.$message.error("登录过期")
+          this.login_state = false;
+          this.$store.dispatch("user_logout")
+          router.push("user_login")
         })
       }
     },
