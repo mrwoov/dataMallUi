@@ -11,18 +11,30 @@ export const release = (data) => {
     return request({
         url: baseurl + "/",
         method: "patch",
-        headers:headers,
+        headers: headers,
         data
     })
 }
 //用户下架商品
 export const releaseOff = (goodsId) => {
-  return request({
-      url: baseurl + "/release_off",
-      method:"post",
-      headers:headers,
-      data:{
-          goodsId:goodsId
-      }
-  })
+    return request({
+        url: baseurl + "/release_off",
+        method: "post",
+        headers: headers,
+        data: {
+            goodsId: goodsId
+        }
+    })
+}
+
+//用户上架商品
+export const releaseOn = (goodsId) => {
+    return request({
+        url: baseurl + "/release_on",
+        method: "post",
+        headers: headers,
+        data: {
+            goodsId: goodsId
+        }
+    })
 }
