@@ -18,6 +18,11 @@ export const release = (data) => {
 //用户下架商品
 export const releaseOff = (goodsId) => {
   return request({
-      url: baseurl 
+      url: baseurl + "/release_off",
+      method:"post",
+      headers:headers,
+      data:{
+          goodsId:goodsId
+      }
   })
 }
