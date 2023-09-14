@@ -123,7 +123,7 @@ export default {
       })
     },
     class_link(href) {
-      return "http://localhost:8080/categories" + href;
+      return "http://localhost:8080/categories/" + href;
     },
     search() {
     },

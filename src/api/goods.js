@@ -99,3 +99,20 @@ export const update = (data) => {
         data: data
     })
 }
+//搜索商品
+export const search = (keyword) =>{
+    return request({
+        url:baseurl+"/search",
+        method:"get",
+        params:{
+            keyword:keyword
+        }
+    })
+}
+//查看分类下商品
+export const categoriesGoods = (categories_name)=>{
+    return request({
+        url:baseurl+"/categories?categories="+categories_name,
+        method:"get",
+    })
+}
