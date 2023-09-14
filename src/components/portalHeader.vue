@@ -18,9 +18,9 @@
           <div class="grid-content" style="float: right;padding-right: 50px; padding-top: 5px">
             <span><a class="header-link" href="#">帮助</a></span>
             <span v-if="!login_state">&nbsp;|&nbsp;<a class="header-link"
-                                                    href="http://localhost:8080/user/reg">立即加入</a></span>
+                                                      href="http://localhost:8080/user/reg">立即加入</a></span>
             <span v-if="!login_state">&nbsp;|&nbsp;<a class="header-link"
-                                                    href="http://localhost:8080/user/login">登录</a></span>
+                                                      href="http://localhost:8080/user/login">登录</a></span>
             <span class="header-text" v-if="login_state">&nbsp;|&nbsp;
               <el-dropdown>
                 <span class="header-text">{{ username }}</span><i class="el-icon-arrow-down"
@@ -77,7 +77,7 @@
                 </el-col>
                 <el-col :span="8">
                   <span>
-                    <i class="iconfont icon-love search-button"></i>
+                    <i class="el-icon-circle-plus-outline search-button"></i>
                     <i class="el-icon-goods search-button mr-5"></i>
                     </span>
                 </el-col>
@@ -92,15 +92,16 @@
 <script>
 import {api_user_checkToken} from "@/api/user_base";
 import * as api_goodsCategories from "@/api/goods_categories"
+
 export default {
   name: "portalHeader",
   data() {
     return {
-      categories_list : [],
+      categories_list: [],
       login_state: false,
       searchName: "",
-      username:"",
-      role:"",
+      username: "",
+      role: "",
     };
   },
   created() {
@@ -109,7 +110,7 @@ export default {
   },
   methods: {
     load() {
-      api_goodsCategories.getList().then(res=>{
+      api_goodsCategories.getList().then(res => {
         const data = res.data
         for (let i = 0; i < data.length; i++) {
           let name = data[i].name
@@ -130,10 +131,10 @@ export default {
       this.$store.dispatch("user_logout")
       this.login_state = false
     },
-    check_token(){
+    check_token() {
       if (this.$store.state.token != null) {
-        api_user_checkToken().then(res=>{
-          if (res.status!==200){
+        api_user_checkToken().then(res => {
+          if (res.status !== 200) {
             this.login_state = false;
             return;
           }
