@@ -15,9 +15,14 @@ const routes = [
         component: () => import("../views/login.vue")
     },
     {
-        path:"/categories/:categories",
+        path: "/categories/:categories",
         name: "categories",
-        component:()=>import("../views/categories.vue")
+        component: () => import("../views/categories.vue")
+    },
+    {
+        path: "/goods/:goods_id",
+        name: "goods",
+        component: () => import("../views/goods.vue")
     },
     {
         path: "/admin",
@@ -25,9 +30,9 @@ const routes = [
         component: () => import("../views/adminManage"),
         redirect: '/',
         children: [
-            {path: "/", name: "index", component: () => import("../views/adminIndex")},
-            {path: "categories", name: "categories", component: () => import("../views/adminManageCategories")},
-            {path: "goods", name: "goods", component: () => import("../views/adminManageGoods.vue")}
+            {path: "/", name: "admin_index", component: () => import("../views/adminIndex")},
+            {path: "categories", name: "admin_categories", component: () => import("../views/adminManageCategories")},
+            {path: "goods", name: "admin_goods", component: () => import("../views/adminManageGoods.vue")}
         ]
     }
 ]

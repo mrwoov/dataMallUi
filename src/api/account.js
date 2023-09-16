@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 import store from "@/store";
 
-let baseurl = "/users/"
+let baseurl = "/accounts/"
 let token = store.state.token
 let headers = {
     token: token
@@ -22,40 +22,14 @@ export const api_user_checkToken = () => {
         headers: headers
     })
 }
-//管理员新增或修改用户
-export const api_user_admin_saveOrUpdate = (data) => {
-    return request({
-        url: baseurl + "admin",
-        method: "patch",
-        headers: headers,
-        data
-    })
-}
-//管理员删除用户
-export const api_user_admin_del = (id) => {
-    return request({
-        url: baseurl + "admin/" + id,
-        method: "delete",
-        headers: headers,
-    })
-}
-//管理员批量删除用户
-export const api_user_admin_delBatch = (ids) => {
-    return request({
-        url: baseurl + "admin/del_batch",
-        method: "post",
-        headers:headers,
-        ids
-    })
-}
 //管理员分页查
 export const api_user_admin_queryPage = (username, email, page_num, page_size) => {
     return request({
         url: baseurl + "admin/query?pageNum=" + page_num + "&pageSize=" + page_size,
         method: "post",
-        headers:headers,
+        headers: headers,
         data: {
-            userName: username,
+            username: username,
             email: email
         }
     })
@@ -66,7 +40,7 @@ export const api_user_admin_get = (id) => {
     return request({
         url: baseurl + "admin/" + id,
         method: "get",
-        headers:headers
+        headers: headers
     })
 }
 //用户注册-发验证码
@@ -82,8 +56,8 @@ export const api_user_reg = (code, username, password, email) => {
         url: baseurl + "reg/" + code,
         method: "post",
         data: {
-            userName: username,
-            passWord: password,
+            username: username,
+            password: password,
             email: email
         }
     })
@@ -102,7 +76,7 @@ export const api_user_forget = (code, email, password) => {
         method: "post",
         data: {
             email: email,
-            passWord: password
+            password: password
         }
     })
 }

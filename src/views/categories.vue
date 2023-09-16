@@ -16,7 +16,8 @@
               <span class="collection-num">{{ item.collection }}人想要</span>
               <br>
               <span class="owner-username">
-                <a :href="user_link(item.uid)">{{ item.username }}</a>
+                <img :src="item.avatar" alt="" class="avatar-img">
+                <a :href="user_link(item.uid)" class="username">{{ item.username }}</a>
               </span>
             </div>
           </el-card>
@@ -35,7 +36,7 @@ export default {
   data() {
     return {
       categories: this.$route.params.categories,
-      data: null
+      data: []
     }
   },
   created() {
@@ -69,6 +70,21 @@ export default {
 }
 
 .owner-username {
+  margin-top: 2px;
+  height: 40px;
+  text-align: center;
   color: rgb(128, 128, 128);
+  display: flex;
+  justify-items: center;
+}
+.avatar-img{
+  width: 35px;
+  height: 35px;
+  object-position: center;
+  border-radius: 50%;
+}
+.username{
+  line-height: 40px;
+  margin-left: 10px;
 }
 </style>

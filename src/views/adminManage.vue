@@ -7,7 +7,8 @@
 
     <el-container>
       <el-header style=" border-bottom: 1px solid #ccc; ">
-        <admin-header @asideCollapse=collapse :collapseBtnClass="collapseBtnClass" :collapse="collapse" :username="this.username"></admin-header>
+        <admin-header @asideCollapse=collapse :collapseBtnClass="collapseBtnClass" :collapse="collapse"
+                      :username="this.username"></admin-header>
       </el-header>
 
       <el-main>
@@ -24,7 +25,7 @@
 import adminAside from "@/components/adminAside";
 import adminHeader from "@/components/adminHeader";
 import router from "@/router";
-import {api_user_checkToken} from "@/api/user_base";
+import {api_user_checkToken} from "@/api/account";
 
 export default {
   name: 'admin-manage',
@@ -34,20 +35,20 @@ export default {
       isCollapse: false,
       sideWidth: 200,
       logoTextShow: true,
-      username:""
+      username: ""
     }
   },
   created() {
     this.check_token();
   },
-  components:{
-    adminAside,adminHeader
+  components: {
+    adminAside, adminHeader
   },
   methods: {
-    check_token(){
+    check_token() {
       if (this.$store.state.token !== null) {
-        api_user_checkToken().then(res=>{
-          if (res.status!==200){
+        api_user_checkToken().then(res => {
+          if (res.status !== 200) {
             this.$message.error("登录过期")
             this.login_state = false;
             this.$store.dispatch("user_logout")
@@ -55,13 +56,13 @@ export default {
             return;
           }
           this.login_state = true;
-          this.username = res.data.userName
-          this.role = parseInt(res.data.role)
-          if (this.role!==1){
+          this.username = res.data.username
+          this.admin = res.data.admin
+          if (!this.admin) {
             this.$message.error("无权限");
             router.back();
           }
-        }).catch(res =>{
+        }).catch(res => {
           this.$message.error("登录过期")
           this.login_state = false;
           this.$store.dispatch("user_logout")

@@ -9,11 +9,11 @@ import PortalHeader from "@/components/portalHeader.vue";
       <span style="font-size: 20px;float: left">登录</span>
       <el-form class="login-form" ref="loginForm" :model="form" :rules="rules"
                @submit.native.prevent="login()">
-        <el-form-item prop="userName">
-          <el-input class="login-input" size="large" v-model="form.userName" placeholder="请输入用户名"></el-input>
+        <el-form-item prop="username">
+          <el-input class="login-input" size="large" v-model="form.username" placeholder="请输入用户名"></el-input>
         </el-form-item>
-        <el-form-item prop="passWord">
-          <el-input class="login-input" size="large" v-model="form.passWord" placeholder="请输入密码"
+        <el-form-item prop="password">
+          <el-input class="login-input" size="large" v-model="form.password" placeholder="请输入密码"
                     type="password"></el-input>
         </el-form-item>
         <el-form-item>
@@ -28,20 +28,20 @@ import PortalHeader from "@/components/portalHeader.vue";
 </template>
 <script>
 import router from "@/router";
-import {api_user_login} from "@/api/user_base";
+import {api_user_login} from "@/api/account";
 export default {
   name: "user_login",
   data() {
     return {
       form: {
-        userName: "",
-        passWord: ""
+        username: "",
+        password: ""
       },
       rules: {
-        userName: [
+        username: [
           { required: true, message: '请输入用户名', trigger: 'blur' }
         ],
-        passWord: [
+        password: [
           { required: true, message: '请输入密码', trigger: 'blur' }
         ]
       }

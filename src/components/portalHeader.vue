@@ -26,7 +26,7 @@
                 <span class="header-text">{{ username }}</span><i class="el-icon-arrow-down"
                                                                   style="margin-left: 5px"></i>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item v-if="this.role===1">
+                  <el-dropdown-item v-if="this.admin">
                     <a href="http://localhost:8080/admin" class="header-text">后台管理</a>
                   </el-dropdown-item>
                   <el-dropdown-item>
@@ -90,7 +90,7 @@
   </div>
 </template>
 <script>
-import {api_user_checkToken} from "@/api/user_base";
+import {api_user_checkToken} from "@/api/account";
 import * as api_goodsCategories from "@/api/goods_categories"
 
 export default {
@@ -101,7 +101,7 @@ export default {
       login_state: false,
       searchName: "",
       username: "",
-      role: "",
+      admin: false,
     };
   },
   created() {
@@ -136,11 +136,12 @@ export default {
         api_user_checkToken().then(res => {
           if (res.status !== 200) {
             this.login_state = false;
+            this.$store.dispatch("user_logout")
             return;
           }
           this.login_state = true;
-          this.username = res.data.userName
-          this.role = parseInt(res.data.role)
+          this.username = res.data.username
+          this.admin = res.data.admin
         })
       }
     },
