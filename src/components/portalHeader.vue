@@ -66,7 +66,7 @@
                         <el-input
                             placeholder="搜索"
                             prefix-icon="el-icon-search"
-                            v-model="searchName"
+                            v-model="keyword"
                             class="search-input"
                             @keyup.enter.native="search">
                       </el-input>
@@ -99,7 +99,7 @@ export default {
     return {
       categories_list: [],
       login_state: false,
-      searchName: "",
+      keyword: "",
       username: "",
       admin: false,
     };
@@ -126,6 +126,12 @@ export default {
       return "http://localhost:8080/categories/" + href;
     },
     search() {
+      this.$router.push({
+        path:'/search',
+        query:{
+          keyword:this.keyword
+        }
+      })
     },
     logout() {
       this.$store.dispatch("user_logout")
