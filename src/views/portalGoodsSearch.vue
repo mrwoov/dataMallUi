@@ -46,7 +46,7 @@ export default {
   },
   watch: {
     $route: {
-      handler(){
+      handler() {
         this.keyword = this.$route.query.keyword;
         this.load();
       }
