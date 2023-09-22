@@ -5,29 +5,37 @@ Vue.use(VueRouter)
 
 const routes = [
     {
-        path: "/",
-        name: "portal_index",
-        component: () => import("../views/portalIndex.vue")
-    },
-    {
-        path: "/user/login",
-        name: "user_login",
-        component: () => import("../views/login.vue")
-    },
-    {
-        path: "/categories/:categories",
-        name: "categories",
-        component: () => import("../views/categories.vue")
-    },
-    {
-        path: "/goods/:goods_id",
-        name: "goods",
-        component: () => import("../views/goods.vue")
-    },
-    {
-        path: "/search",
-        name: "portalGoodsSearch",
-        component:()=>import("../views/portalGoodsSearch.vue")
+        path:"/",
+        name:"portal",
+        component:()=>import("../views/portal.vue"),
+        redirect: "/",
+        children: [
+            {
+                path: "/",
+                name: "portal_index",
+                component: () => import("../views/portalIndex.vue")
+            },
+            {
+                path: "/user/login",
+                name: "user_login",
+                component: () => import("../views/login.vue")
+            },
+            {
+                path: "/categories/:categories",
+                name: "categories",
+                component: () => import("../views/categories.vue")
+            },
+            {
+                path: "/goods/:goods_id",
+                name: "goods",
+                component: () => import("../views/goods.vue")
+            },
+            {
+                path: "/search",
+                name: "portalGoodsSearch",
+                component:()=>import("../views/portalGoodsSearch.vue")
+            },
+        ]
     },
     {
         path: "/admin",

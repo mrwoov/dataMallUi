@@ -1,6 +1,5 @@
 <template>
   <div>
-    <PortalHeader></PortalHeader>
     <div class="body">
       <div class="body-box">
         <div class="goods-box">
@@ -35,7 +34,16 @@
           <span class="comment-title">商品评论</span>
           <hr class="comment-hr">
           <div v-if="comment_list.length !==0">
-            <template></template>
+            <template v-for="comment in comment_list">
+              <div class="comment">
+                <span><img :src="comment.avatar" alt="" class="user-avatar"/> </span>
+                <span>{{comment.username}}</span>
+                <span>{{comment.createTime.replace("T"," ")}}</span>
+                <div>
+                  {{comment.message}}
+                </div>
+              </div>
+            </template>
           </div>
           <div v-else>
             <p class="no-comment">暂无评论</p>
@@ -52,6 +60,7 @@
 import {defineComponent} from "vue";
 import PortalHeader from "@/components/portalHeader.vue";
 import * as api_goods from "@/api/goods"
+import * as api_goods_comment from "@/api/goods_comment"
 import PicShow from "@/components/picShow.vue";
 
 export default defineComponent({
@@ -66,18 +75,30 @@ export default defineComponent({
   },
   created() {
     this.load()
+    this.get_comment()
   },
   methods: {
     load() {
       api_goods.getInfo(this.goods_id).then(res => {
-        console.log(res)
         this.goods_data = res.data
       })
     },
+    get_comment(){
+      api_goods_comment.get(this.goods_id,1).then(res=>{
+        console.log(res.data.records)
+        this.comment_list = res.data.records
+      })
+    }
   }
 })
 </script>
 <style scoped>
+.user-avatar{
+  width: 35px;
+  height: 35px;
+  object-position: center;
+  border-radius: 50%;
+}
 .no-comment {
   font-size: 30px;
   margin-top: 20px;

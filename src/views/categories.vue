@@ -1,6 +1,5 @@
 <template>
   <div>
-    <PortalHeader></PortalHeader>
     <h2 v-if="this.data.length === 0" style="text-align: center;margin-top:200px ">该类别下暂无商品</h2>
     <el-row v-else>
       <el-col :span="5" v-for="(item) in data" :key="item.id" :offset="1">

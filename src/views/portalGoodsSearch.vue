@@ -1,10 +1,7 @@
 <script setup>
-import portalHeader from "@/components/portalHeader.vue";
-
 </script>
 <template>
   <div>
-    <portalHeader></portalHeader>
     <h2 v-if="this.data.length === 0" style="text-align: center;margin-top:200px ">搜索走丢了！</h2>
     <el-row v-else>
       <el-col :span="5" v-for="(item) in data" :key="item.id" :offset="1">
