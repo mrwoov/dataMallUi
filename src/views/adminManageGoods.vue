@@ -23,7 +23,6 @@
           </el-option>
         </el-select>
       </template>
-      <!--todo:商品分类下拉框-->
       <el-button class="ml-5" type="primary" @click="load">搜索</el-button>
       <el-button type="warning" @click="reset">重置</el-button>
     </div>
