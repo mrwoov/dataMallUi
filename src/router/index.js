@@ -45,7 +45,10 @@ const routes = [
         children: [
             {path: "/", name: "admin_index", component: () => import("../views/adminIndex")},
             {path: "categories", name: "admin_categories", component: () => import("../views/adminManageCategories")},
-            {path: "goods", name: "admin_goods", component: () => import("../views/adminManageGoods.vue")}
+            {path: "goods", name: "admin_goods", component: () => import("../views/adminManageGoods.vue")},
+            {path: "admin", name: "admin_admin", component: () => import("../views/adminManageAdmin.vue")},
+            {path: "role", name: "admin_role", component: () => import("../views/adminManageRole.vue")},
+            {path: "auth", name: "admin_auth", component: () => import("../views/adminManageAuth.vue")}
         ]
     }
 ]

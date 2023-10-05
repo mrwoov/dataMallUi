@@ -1,10 +1,7 @@
-<script setup>
-import PortalHeader from "@/components/portalHeader.vue";
-</script>
+<script setup></script>
 
 <template>
   <div>
-    <portal-header></portal-header>
     <div class="login-container">
       <span style="font-size: 20px;float: left">登录</span>
       <el-form class="login-form" ref="loginForm" :model="form" :rules="rules"
@@ -62,14 +59,18 @@ export default {
         //表单检验
         if (valid){
           api_user_login(this.form).then(res=>{
+            console.log(res)
             if (res.status !== 200){
               this.$message.error("密码或账号错误！")
               return
             }
             this.$store.dispatch("user_login",res)
             this.$message.success("登录成功！");
-            router.back()
-          })
+            // router.back()
+          }).catch(error => {
+            console.error(error);
+            throw error;
+          });
         }
       })
     },

@@ -1,12 +1,7 @@
 <template>
   <div>
     <!--面包屑导航-->
-    <div class="mb-30">
-      <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>商品管理</el-breadcrumb-item>
-      </el-breadcrumb>
-    </div>
+    <breadcrumb :title="title"/>
     <!--搜索框-->
     <div class="div-center">
       <el-input placeholder="请输入商品名称" suffix-icon="el-icon-message" class="ml-5 input-width"
@@ -77,11 +72,14 @@
 <script>
 import * as api_goods from "@/api/goods"
 import * as api_goodsCategories from "@/api/goods_categories"
+import Breadcrumb from "@/components/breadcrumb.vue";
 
 export default {
   name: "adminManageGoods",
+  components: {Breadcrumb},
   data() {
     return {
+      title: "商品管理",
       token: this.$store.state.token,
       table_data: [],
       headerBg: 'headerBg',
@@ -117,7 +115,7 @@ export default {
     },
     //生成商品链接
     item_href(id) {
-      return window.document.location.origin + '/item/' + id;
+      return window.document.location.origin + '/goods/' + id;
     },
     getCategoriesList() {
       api_goodsCategories.getList().then(res => {

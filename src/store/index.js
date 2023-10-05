@@ -21,14 +21,14 @@ export default new Vuex.Store({
     },
     del_login_info(state){
       state.token = null
-      state.role = null
+      state.admin = null
     }
   },
   actions: {
     user_login(context,res){
       const token = res.data.token
-      const role = res.data.role
-      context.commit("set_login_info",token,role)
+      const admin = res.data.admin
+      context.commit("set_login_info", token, admin)
     },
     user_logout(context){
       context.commit("del_login_info")
