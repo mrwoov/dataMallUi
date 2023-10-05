@@ -7,7 +7,7 @@ let headers = {
     token: token
 }
 //登录
-export const api_user_login = (data) => {
+export const login = (data) => {
     return request({
         url: baseurl + "login",
         method: "post",
@@ -15,7 +15,7 @@ export const api_user_login = (data) => {
     })
 }
 //校验token
-export const api_user_checkToken = () => {
+export const checkToken = () => {
     return request({
         url: baseurl + "token",
         method: "get",
@@ -23,7 +23,7 @@ export const api_user_checkToken = () => {
     })
 }
 //管理员分页查
-export const api_user_admin_queryPage = (username, email, page_num, page_size) => {
+export const admin_query = (username, email, page_num, page_size) => {
     return request({
         url: baseurl + "admin/query?pageNum=" + page_num + "&pageSize=" + page_size,
         method: "post",
@@ -36,7 +36,7 @@ export const api_user_admin_queryPage = (username, email, page_num, page_size) =
 }
 
 //管理员查单个id信息
-export const api_user_admin_get = (id) => {
+export const admin_get = (id) => {
     return request({
         url: baseurl + "admin/" + id,
         method: "get",
@@ -44,14 +44,14 @@ export const api_user_admin_get = (id) => {
     })
 }
 //用户注册-发验证码
-export const api_user_regSendCode = (email) => {
+export const regSendCode = (email) => {
     return request({
         url: baseurl + "reg/send_code/" + email,
         method: "get"
     })
 }
 //用户注册
-export const api_user_reg = (code, username, password, email) => {
+export const reg = (code, username, password, email) => {
     return request({
         url: baseurl + "reg/" + code,
         method: "post",
@@ -63,14 +63,14 @@ export const api_user_reg = (code, username, password, email) => {
     })
 }
 //用户忘记密码发送验证码
-export const api_user_forgetSendCode = (email) => {
+export const forgetSendCode = (email) => {
     return request({
         url: baseurl + "/forget/send_code/" + email,
         method: "get"
     })
 }
 //忘记密码重置
-export const api_user_forget = (code, email, password) => {
+export const forget = (code, email, password) => {
     return request({
         url: baseurl + "/forget/" + code,
         method: "post",

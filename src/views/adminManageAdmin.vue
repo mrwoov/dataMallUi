@@ -21,7 +21,8 @@
       <el-button type="primary" @click="handleAdd">新增 <i class="el-icon-circle-plus-outline"></i></el-button>
     </div>
     <!--表格-->
-    <el-table :cell-style="row_style" :data="table_data" :header-cell-class-name="headerBg" :header-cell-style="row_style"
+    <el-table :cell-style="row_style" :data="table_data" :header-cell-class-name="headerBg"
+              :header-cell-style="row_style"
               border stripe @selection-change="handleSelectionChange">
       <el-table-column
           type="selection"
@@ -115,13 +116,13 @@ export default {
   },
   methods: {
     load() {
-      api_admin.query(this.search_form, this.page_control.pageSize, this.page_control.pageNum).then(res => {
+      api_admin.admin_query(this.search_form, this.page_control.pageSize, this.page_control.pageNum).then(res => {
         this.table_data = res.data.records
         this.page_control.total = res.data.total
       })
     },
     saveOrUpdate() {
-      api_admin.saveOrUpdate(this.add_form).then(res => {
+      api_admin.admin_saveOrUpdate(this.add_form).then(res => {
         if (res.status !== 200) {
           this.$message.error(res.message)
           return
@@ -134,7 +135,7 @@ export default {
       })
     },
     del(id) {
-      api_admin.del(id).then(res => {
+      api_admin.admin_del(id).then(res => {
         if (res.status !== 200) {
           this.$message.error(res.message)
           return
@@ -144,7 +145,7 @@ export default {
       })
     },
     getRoleList() {
-      api_role.get_list().then(res => {
+      api_role.admin_getList().then(res => {
         this.role_list = res.data
       })
     },

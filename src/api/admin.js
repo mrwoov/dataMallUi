@@ -6,7 +6,7 @@ let token = store.state.token
 let headers = {
     token: token
 }
-export const saveOrUpdate = (data) => {
+export const admin_saveOrUpdate = (data) => {
     return request({
         headers: headers,
         url: baseurl,
@@ -14,14 +14,14 @@ export const saveOrUpdate = (data) => {
         data
     })
 }
-export const del = (id) => {
+export const admin_del = (id) => {
     return request({
         headers: headers,
         url: baseurl + id,
         method: "delete"
     })
 }
-export const del_batch = (ids) => {
+export const admin_del_batch = (ids) => {
     return request({
         headers: headers,
         url: baseurl + "del_batch",
@@ -29,7 +29,7 @@ export const del_batch = (ids) => {
         data: ids
     })
 }
-export const query = (data, pageSize, pageNum) => {
+export const admin_query = (data, pageSize, pageNum) => {
     return request({
         headers: headers,
         url: baseurl + "query?pageSize=" + pageSize + "&pageNum=" + pageNum,

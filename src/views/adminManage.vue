@@ -25,7 +25,7 @@
 import adminAside from "@/components/adminAside";
 import adminHeader from "@/components/adminHeader";
 import router from "@/router";
-import {api_user_checkToken} from "@/api/account";
+import * as api_account from "@/api/account";
 
 export default {
   name: 'admin-manage',
@@ -47,7 +47,7 @@ export default {
   methods: {
     check_token() {
       if (this.$store.state.token !== null) {
-        api_user_checkToken().then(res => {
+        api_account.checkToken().then(res => {
           if (res.status !== 200) {
             this.$message.error("登录过期")
             this.login_state = false;

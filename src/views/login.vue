@@ -25,7 +25,7 @@
 </template>
 <script>
 import router from "@/router";
-import {api_user_login} from "@/api/account";
+import * as api_account from "@/api/account";
 
 export default {
   name: "user_login",
@@ -59,7 +59,7 @@ export default {
       this.$refs.loginForm.validate((valid)=>{
         //表单检验
         if (valid){
-          api_user_login(this.form).then(res=>{
+          api_account.login(this.form).then(res => {
             console.log(res)
             if (res.status !== 200){
               this.$message.error("密码或账号错误！")

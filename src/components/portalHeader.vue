@@ -90,7 +90,7 @@
   </div>
 </template>
 <script>
-import {api_user_checkToken} from "@/api/account";
+import * as api_account from "@/api/account";
 import * as api_goodsCategories from "@/api/goods_categories"
 
 export default {
@@ -139,7 +139,7 @@ export default {
     },
     check_token() {
       if (this.$store.state.token != null) {
-        api_user_checkToken().then(res => {
+        api_account.checkToken().then(res => {
           if (res.status !== 200) {
             this.login_state = false;
             this.$store.dispatch("user_logout")
