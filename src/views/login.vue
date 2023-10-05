@@ -26,6 +26,7 @@
 <script>
 import router from "@/router";
 import {api_user_login} from "@/api/account";
+
 export default {
   name: "user_login",
   data() {
@@ -66,11 +67,8 @@ export default {
             }
             this.$store.dispatch("user_login",res)
             this.$message.success("登录成功！");
-            // router.back()
-          }).catch(error => {
-            console.error(error);
-            throw error;
-          });
+            router.back()
+          })
         }
       })
     },
