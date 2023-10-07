@@ -38,7 +38,7 @@
     </el-table>
 
     <!--新增修改框-->
-    <el-dialog :visible.sync="dialogFormVisible" title="管理员管理" width="30%">
+    <el-dialog :title="title" :visible.sync="dialogFormVisible" width="30%">
       <el-form label-width="80px" size="small">
         <el-form-item label="权限名称">
           <el-input v-model="add_form.name" autocomplete="off"></el-input>

@@ -60,7 +60,7 @@
       </el-pagination>
     </div>
     <!--新增修改框-->
-    <el-dialog title="商品分类管理" :visible.sync="dialogFormVisible" width="30%">
+    <el-dialog :title="title" :visible.sync="dialogFormVisible" width="30%">
       <el-form label-width="80px" size="small">
         <el-form-item label="分类名称">
           <el-input v-model="add_form.name" autocomplete="off"></el-input>
