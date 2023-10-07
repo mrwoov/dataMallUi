@@ -11,7 +11,8 @@ export default new Vuex.Store({
         token: null,
         role: "",
         username: "",
-        admin: ""
+        admin: "",
+        dynamicRoutes: []
     },
     getters: {},
     mutations: {
@@ -22,7 +23,11 @@ export default new Vuex.Store({
         del_login_info(state) {
             state.token = null
             state.admin = null
+        },
+        DYNAMIC_ROUTES(state, routes) {
+            state.dynamicRoutes = routes
         }
+
     },
     actions: {
         user_login(context, res) {
@@ -32,6 +37,9 @@ export default new Vuex.Store({
         },
         user_logout(context) {
             context.commit("del_login_info")
+        },
+        dynamicRoutes({commit}, routes) {
+            commit('DYNAMIC_ROUTES', routes)
         }
     },
     modules: {}

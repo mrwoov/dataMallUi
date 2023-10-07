@@ -17,5 +17,6 @@ Vue.prototype.request = request
 new Vue({
     router,
     store,
+    VueCookies,
     render: h => h(App)
 }).$mount('#app')

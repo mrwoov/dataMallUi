@@ -31,3 +31,10 @@ export const admin_getTree = () => {
         headers: headers
     })
 }
+//获取权限图标列表
+export const get_icons = () => {
+    return request({
+        url: baseurl + "icons",
+        method: "get"
+    })
+}

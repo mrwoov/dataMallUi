@@ -10,6 +10,7 @@
         :data="tableData"
         :tree-props="{children: 'child', hasChildren: 'hasChildren'}"
         border
+        default-expand-all
         default-expand-2
         row-key="id"
         style="width: 100%;margin-bottom: 20px;margin-top: 10px">
@@ -29,6 +30,16 @@
           label="权限路径"
           prop="path">
       </el-table-column>
+      <el-table-column
+          label="页面路径"
+          prop="pagePath">
+      </el-table-column>
+      <el-table-column
+          label="权限图标">
+        <template slot-scope="scope">
+          <i :class="scope.row.icon"/>
+        </template>
+      </el-table-column>
       <el-table-column align="center" label="操作" width="200">
         <template v-slot:default="scope">
           <el-button type="success" @click="handleEdit(scope.row)">修改<i class="el-icon-edit"></i></el-button>
@@ -46,9 +57,22 @@
         <el-form-item label="权限路径">
           <el-input v-model="add_form.path" autocomplete="off"></el-input>
         </el-form-item>
+        <el-form-item label="页面路径">
+          <el-input v-model="add_form.pagePath" autocomplete="off"></el-input>
+        </el-form-item>
         <el-form-item label="父权限id">
           <el-input v-model="add_form.parentId" autocomplete="off"></el-input>
         </el-form-item>
+        <el-form-item label="图标">
+          <template slot-scope="scope">
+            <el-select v-model="add_form.icon" clearable placeholder="请选择">
+              <el-option v-for="item in icons" :key="item.name" :label="item.name" :value="item.value">
+                <i :class="item.value"/>{{ item.name }}
+              </el-option>
+            </el-select>
+          </template>
+        </el-form-item>
+
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -69,11 +93,13 @@ export default {
       title: '权限管理',
       tableData: [],
       dialogFormVisible: false,
-      add_form: []
+      add_form: [],
+      icons: []
     }
   },
   created() {
     this.load()
+    this.getIcons()
   },
   methods: {
     load() {
@@ -102,6 +128,12 @@ export default {
         }
         this.$message.success(res.message)
         this.load()
+      })
+    },
+    getIcons() {
+      api_auth.get_icons().then(res => {
+        console.log(res.data)
+        this.icons = res.data
       })
     },
     handleEdit(row) {

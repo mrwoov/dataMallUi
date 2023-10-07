@@ -11,38 +11,57 @@
       <img src="../assets/logo.png" alt="" style="width: 20px; position: relative; top: 5px; right: 5px">
       <b style="color: white" v-show="logoTextShow">后台管理系统</b>
     </div>
-    <el-menu-item index="/admin">
-      <i class="el-icon-s-home"></i>
-      <span slot="title">主页</span>
-    </el-menu-item>
 
-    <el-submenu index="2">
-      <template slot="title">
-        <i class="el-icon-s-goods"></i>
-        <span slot="title">商品管理</span>
-      </template>
-      <el-menu-item index="/admin/categories"><i class="el-icon-bangzhu"></i>商品类别管理</el-menu-item>
-      <el-menu-item index="/admin/goods"><i class="el-icon-goods"></i>商品管理</el-menu-item>
-    </el-submenu>
+    <div v-for="item in auth_list" :key="item.id">
+      <div v-if="item.path==='/admin'">
+        <el-menu-item :index="item.path">
+          <i :class="item.icon"></i>
+          <span slot="title">{{ item.description }}</span>
+        </el-menu-item>
+      </div>
+      <div v-else>
+        <el-submenu :index="item.id">
+          <template slot="title">
+            <i :class="item.icon"></i>
+            <span slot="title">{{ item.description }}</span>
+          </template>
+          <div v-for="subItem in item.child" :key="subItem.id">
+            <el-menu-item :index="subItem.path">
+              <i :class="subItem.icon"></i>
+              <span slot="title">{{ subItem.description }}</span>
+            </el-menu-item>
+          </div>
+        </el-submenu>
+      </div>
+    </div>
 
-    <el-submenu index="3">
-      <template slot="title">
-        <i class="el-icon-menu"></i>
-        <span slot="title">权限角色管理</span>
-      </template>
-      <el-menu-item index="/admin/admin"><i class="el-icon-user-solid"></i>管理员管理</el-menu-item>
-      <el-menu-item index="/admin/role"><i class="el-icon-s-custom"></i>角色管理</el-menu-item>
-      <el-menu-item index="/admin/auth"><i class="el-icon-s-flag"></i>权限管理</el-menu-item>
-    </el-submenu>
+
   </el-menu>
 </template>
 
 <script>
+import * as api_role from "@/api/role";
+
 export default {
   name: "AdminAside",
   props: {
     isCollapse: Boolean,
     logoTextShow: Boolean,
+  },
+  data() {
+    return {
+      auth_list: []
+    }
+  },
+  created() {
+    this.load_menu()
+  },
+  methods: {
+    load_menu() {
+      api_role.get_auths().then(res => {
+        this.auth_list = res.data
+      })
+    }
   }
 }
 </script>

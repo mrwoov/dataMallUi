@@ -1,7 +1,8 @@
-import router from '@/router/index'
+import router, {setRoutes} from '@/router/index'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from '@/store'
 // 导航守卫
+
 router.beforeEach((to, from, next) => {
     if (to.meta.requireAuth) {
         // 判断该路由是否需要登录权限
@@ -10,8 +11,15 @@ router.beforeEach((to, from, next) => {
             next({
                 path: '/user/login'
             })
-            // 这里是待会获取异步路由的地方
         }
+    }
+    console.log(store.state.dynamicRoutes)
+    if (store.state.dynamicRoutes.length === 1 && store.state.token != null) {
+        let new_router = setRoutes(store.state.token)
+        store.dispatch("dynamicRoutes", new_router).then(() => {
+            router.addRoute(store.getters.dynamicRoutes)
+            next({...to, replace: true})
+        })
     }
     next()
 })

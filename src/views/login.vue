@@ -26,6 +26,7 @@
 <script>
 import router from "@/router";
 import * as api_account from "@/api/account";
+import * as api_role from "@/api/role"
 
 export default {
   name: "user_login",
@@ -37,10 +38,10 @@ export default {
       },
       rules: {
         username: [
-          { required: true, message: '请输入用户名', trigger: 'blur' }
+          {required: true, message: '请输入用户名', trigger: 'blur'}
         ],
         password: [
-          { required: true, message: '请输入密码', trigger: 'blur' }
+          {required: true, message: '请输入密码', trigger: 'blur'}
         ]
       }
     }
@@ -48,30 +49,36 @@ export default {
   created() {
     this.load()
   },
-  methods:{
-    load(){
+  methods: {
+    load() {
       if (this.$store.state.token != null) {
         alert("您已登录！");
-        router.push({name:'index'})
+        router.push({name: 'portal_index'})
       }
     },
-     login(){
-      this.$refs.loginForm.validate((valid)=>{
+    load_menu() {
+      api_role.get_auths().then(res => {
+        this.auth_list = res.data
+      })
+    },
+    login() {
+      this.$refs.loginForm.validate((valid) => {
         //表单检验
-        if (valid){
+        if (valid) {
           api_account.login(this.form).then(res => {
             console.log(res)
-            if (res.status !== 200){
+            if (res.status !== 200) {
               this.$message.error("密码或账号错误！")
               return
             }
-            this.$message.success("登录成功！");
             this.$store.dispatch("user_login", res)
-            router.back()
+            this.$message.success("登录成功！");
+            router.push({name: "portal_index"})
           })
         }
       })
     },
+
   }
 }
 </script>
@@ -97,7 +104,7 @@ export default {
   height: 50px;
 }
 
-.forget{
+.forget {
   float: left;
 }
 </style>

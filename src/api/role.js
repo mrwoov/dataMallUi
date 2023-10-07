@@ -57,3 +57,22 @@ export const admin_query = (data, pageNum, pageSize) => {
         data
     })
 }
+//获取管理员权限列表
+export const get_auths = (tk = token) => {
+    return request({
+        url: baseurl + "getAuths",
+        method: "get",
+        headers: {
+            token: tk
+        }
+    })
+}
+export const get_authList = (tk) => {
+    return request({
+        url: baseurl + "getAuthList",
+        method: "get",
+        headers: {
+            token: tk
+        }
+    })
+}

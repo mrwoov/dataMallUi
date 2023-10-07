@@ -46,7 +46,7 @@
       </el-pagination>
     </div>
     <!--新增修改框-->
-    <el-dialog :title="title" :visible.sync="dialogFormVisible" width="80%">
+    <el-dialog :title="title" :visible.sync="dialogFormVisible" width="30%">
       <el-form label-width="80px" size="small">
         <el-form-item label="角色名称">
           <el-input v-model="add_form.roleName" autocomplete="off"></el-input>
@@ -60,6 +60,9 @@
           highlight-current
           node-key="id"
           show-checkbox>
+        <span slot-scope="{node,data}" class="custom-tree-node">
+          <span><i :class="data.icon"></i>{{ data.name }}</span>
+        </span>
       </el-tree>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
