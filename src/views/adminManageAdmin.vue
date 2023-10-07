@@ -18,7 +18,7 @@
     </div>
     <!--操作div-->
     <div class="div-center">
-      <el-button type="primary" @click="handleAdd">新增 <i class="el-icon-circle-plus-outline"></i></el-button>
+      <el-button type="primary" @click="handleAdd">新增<i class="el-icon-circle-plus-outline"></i></el-button>
     </div>
     <!--表格-->
     <el-table :cell-style="row_style" :data="table_data" :header-cell-class-name="headerBg"

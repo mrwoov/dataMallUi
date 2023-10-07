@@ -65,8 +65,8 @@ export default {
               this.$message.error("密码或账号错误！")
               return
             }
-            this.$store.dispatch("user_login",res)
             this.$message.success("登录成功！");
+            this.$store.dispatch("user_login", res)
             router.back()
           })
         }

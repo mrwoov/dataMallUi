@@ -10,7 +10,7 @@ let headers = {
 export const admin_saveOrUpdate = (data) => {
     return request({
         url: baseurl + "admin",
-        methods: "patch",
+        method: "patch",
         headers: headers,
         data
     })

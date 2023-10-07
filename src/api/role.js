@@ -52,7 +52,7 @@ export const admin_getList = () => {
 export const admin_query = (data, pageNum, pageSize) => {
     return request({
         headers: headers,
-        url: baseurl + "admin/query",
+        url: baseurl + "admin/query?pageNum=" + pageNum + "&pageSize=" + pageSize,
         method: "post",
         data
     })
