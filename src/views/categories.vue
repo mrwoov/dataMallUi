@@ -15,7 +15,7 @@
               <span class="collection-num">{{ item.collection }}人想要</span>
               <br>
               <span class="owner-username">
-                <img :src="item.avatar" alt="" class="avatar-img">
+                <el-avatar :size="30" :src="item.avatar"></el-avatar>
                 <a :href="user_link(item.uid)" class="username">{{ item.username }}</a>
               </span>
             </div>
@@ -76,13 +76,15 @@ export default {
   display: flex;
   justify-items: center;
 }
-.avatar-img{
+
+.avatar-img {
   width: 35px;
   height: 35px;
   object-position: center;
   border-radius: 50%;
 }
-.username{
+
+.username {
   line-height: 40px;
   margin-left: 10px;
 }

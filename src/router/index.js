@@ -5,10 +5,11 @@ Vue.use(VueRouter)
 
 const routes = [
     {
-        path:"/",
-        name:"portal",
-        component:()=>import("../views/portal.vue"),
+        path: "/",
+        name: "portal",
+        component: () => import("../views/portal.vue"),
         redirect: "/",
+        meta: {requireAuth: false, requireAdmin: false},
         children: [
             {
                 path: "/",
@@ -33,7 +34,7 @@ const routes = [
             {
                 path: "/search",
                 name: "portalGoodsSearch",
-                component:()=>import("../views/portalGoodsSearch.vue")
+                component: () => import("../views/portalGoodsSearch.vue")
             },
         ]
     },
@@ -42,8 +43,14 @@ const routes = [
         name: "admin",
         component: () => import("../views/adminManage"),
         redirect: '/',
+        meta: {requireAuth: true, requireAdmin: true},
         children: [
-            {path: "/", name: "admin_index", component: () => import("../views/adminIndex")},
+            {
+                path: "/",
+                name: "admin_index",
+                meta: {requireAuth: true, requireAdmin: true},
+                component: () => import("../views/adminIndex")
+            },
             {path: "categories", name: "admin_categories", component: () => import("../views/adminManageCategories")},
             {path: "goods", name: "admin_goods", component: () => import("../views/adminManageGoods.vue")},
             {path: "admin", name: "admin_admin", component: () => import("../views/adminManageAdmin.vue")},

@@ -58,9 +58,9 @@ export default {
           this.login_state = true;
           this.username = res.data.username
           this.admin = res.data.admin
-          if (!this.admin) {
+          if (this.admin === "false") {
             this.$message.error("无权限");
-            router.back();
+            router.push("/")
           }
         }).catch(res => {
           this.$message.error("登录过期")

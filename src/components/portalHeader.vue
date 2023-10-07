@@ -26,7 +26,7 @@
                 <span class="header-text">{{ username }}</span><i class="el-icon-arrow-down"
                                                                   style="margin-left: 5px"></i>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item v-if="this.admin">
+                  <el-dropdown-item v-if="this.admin!=='false'">
                     <a href="http://localhost:8080/admin" class="header-text">后台管理</a>
                   </el-dropdown-item>
                   <el-dropdown-item>
@@ -127,9 +127,9 @@ export default {
     },
     search() {
       this.$router.push({
-        path:'/search',
-        query:{
-          keyword:this.keyword
+        path: '/search',
+        query: {
+          keyword: this.keyword
         }
       })
     },

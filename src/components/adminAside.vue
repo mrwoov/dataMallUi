@@ -18,11 +18,11 @@
 
     <el-submenu index="2">
       <template slot="title">
-        <i class="el-icon-menu"></i>
+        <i class="el-icon-s-goods"></i>
         <span slot="title">商品管理</span>
       </template>
-      <el-menu-item index="/admin/categories">商品类别管理</el-menu-item>
-      <el-menu-item index="/admin/goods">商品管理</el-menu-item>
+      <el-menu-item index="/admin/categories"><i class="el-icon-bangzhu"></i>商品类别管理</el-menu-item>
+      <el-menu-item index="/admin/goods"><i class="el-icon-goods"></i>商品管理</el-menu-item>
     </el-submenu>
 
     <el-submenu index="3">
@@ -30,9 +30,9 @@
         <i class="el-icon-menu"></i>
         <span slot="title">权限角色管理</span>
       </template>
-      <el-menu-item index="/admin/admin">管理员管理</el-menu-item>
-      <el-menu-item index="/admin/role">角色管理</el-menu-item>
-      <el-menu-item index="/admin/auth">权限管理</el-menu-item>
+      <el-menu-item index="/admin/admin"><i class="el-icon-user-solid"></i>管理员管理</el-menu-item>
+      <el-menu-item index="/admin/role"><i class="el-icon-s-custom"></i>角色管理</el-menu-item>
+      <el-menu-item index="/admin/auth"><i class="el-icon-s-flag"></i>权限管理</el-menu-item>
     </el-submenu>
   </el-menu>
 </template>

@@ -36,11 +36,11 @@
           <div v-if="comment_list.length !==0">
             <template v-for="comment in comment_list">
               <div class="comment">
-                <span><img :src="comment.avatar" alt="" class="user-avatar"/> </span>
-                <span>{{comment.username}}</span>
-                <span>{{comment.createTime.replace("T"," ")}}</span>
+                <span><el-avatar :size="30" :src="comment.avatar"></el-avatar> </span>
+                <span>{{ comment.username }}</span>
+                <span>{{ comment.createTime.replace("T", " ") }}</span>
                 <div>
-                  {{comment.message}}
+                  {{ comment.message }}
                 </div>
               </div>
             </template>
@@ -83,8 +83,8 @@ export default defineComponent({
         this.goods_data = res.data
       })
     },
-    get_comment(){
-      api_goods_comment.get(this.goods_id,1).then(res=>{
+    get_comment() {
+      api_goods_comment.get(this.goods_id, 1).then(res => {
         console.log(res.data.records)
         this.comment_list = res.data.records
       })
@@ -93,12 +93,13 @@ export default defineComponent({
 })
 </script>
 <style scoped>
-.user-avatar{
+.user-avatar {
   width: 35px;
   height: 35px;
   object-position: center;
   border-radius: 50%;
 }
+
 .no-comment {
   font-size: 30px;
   margin-top: 20px;
