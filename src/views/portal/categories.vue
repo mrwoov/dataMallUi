@@ -1,8 +1,8 @@
-<script setup>
-</script>
 <template>
   <div>
-    <h2 v-if="this.data.length === 0" style="text-align: center;margin-top:200px ">搜索走丢了！</h2>
+    <div v-if="this.data.length === 0" style="text-align: center;margin-top:200px ">
+      <el-empty v-if="this.data.length === 0" description="暂无商品"></el-empty>
+    </div>
     <el-row v-else>
       <el-col :span="5" v-for="(item) in data" :key="item.id" :offset="1">
         <a :href=card_link(item.id) class="card-link">
@@ -17,7 +17,7 @@
               <span class="collection-num">{{ item.collection }}人想要</span>
               <br>
               <span class="owner-username">
-                <img :src="item.avatar" alt="" class="avatar-img">
+                <el-avatar :size="30" :src="item.avatar"></el-avatar>
                 <a :href="user_link(item.uid)" class="username">{{ item.username }}</a>
               </span>
             </div>
@@ -28,36 +28,28 @@
   </div>
 </template>
 <script>
+import PortalHeader from "@/components/portalHeader.vue";
 import * as api_goods from "@/api/goods"
 
 export default {
-  name: "portalGoodsSearch",
+  name: "categories",
+  components: {PortalHeader},
   data() {
     return {
-      keyword: this.$route.query.keyword,
+      categories: this.$route.params.categories,
       data: []
     }
   },
   created() {
     this.load()
   },
-  mounted() {
-    this.load()
-  },
-  watch: {
-    $route: {
-      handler() {
-        this.keyword = this.$route.query.keyword;
-        this.load();
-      }
-    }
-  },
   methods: {
     load() {
-      api_goods.search(this.keyword).then(res => {
+      api_goods.categoriesGoods(this.categories).then(res => {
         this.data = res.data
       })
-    }, card_link(id) {
+    },
+    card_link(id) {
       return window.document.location.origin + "/goods/" + id
     },
     user_link(id) {
@@ -66,8 +58,7 @@ export default {
   }
 }
 </script>
-
-<style>
+<style scoped>
 .item-price {
   color: orangered;
   font-weight: bold;

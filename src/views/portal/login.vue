@@ -26,7 +26,6 @@
 <script>
 import router from "@/router";
 import * as api_account from "@/api/account";
-import * as api_role from "@/api/role"
 
 export default {
   name: "user_login",
@@ -73,19 +72,6 @@ export default {
         }
       })
     },
-    setRouter(tk) {
-      api_role.get_authList(tk).then(res => {
-        for (let i = 0; i < res.data.length; i++) {
-          let item = res.data[i]
-          let newRouter = {
-            path: 'admin/' + item.path, name: item.name, component: () => import("../views/" + item.page)
-          }
-          console.log(newRouter)
-          this.$router.addRoute('admin', newRouter)
-        }
-        console.log(this.$router.options.routes)
-      })
-    }
   }
 }
 </script>

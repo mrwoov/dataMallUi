@@ -25,7 +25,10 @@
             </span>
               <span style="color: rgb(128,128,128);margin-right: 20px">|</span>
               <span>
-              <el-button type="text" class="collection-button el-icon-star-off">收藏</el-button>
+              <el-button class="collection-button" type="text">
+                <i class="el-icon-star-on" style="color: red;font-size: 18px"></i>
+                <span>收藏</span>
+              </el-button>
             </span>
             </div>
           </div>
@@ -34,20 +37,17 @@
           <span class="comment-title">商品评论</span>
           <hr class="comment-hr">
           <div v-if="comment_list.length !==0">
-            <template v-for="comment in comment_list">
-              <div class="comment">
-                <span><el-avatar :size="30" :src="comment.avatar"></el-avatar> </span>
-                <span>{{ comment.username }}</span>
-                <span>{{ comment.createTime.replace("T", " ") }}</span>
-                <div>
-                  {{ comment.message }}
-                </div>
+            <el-card v-for="comment in comment_list" :key="comment" body-style="margin-top:10px;">
+              <span><el-avatar :size="30" :src="comment.avatar"></el-avatar> </span>
+              <span>{{ comment.username }}</span>
+              <span>{{ comment.createTime.replace("T", " ") }}</span>
+              <div>
+                {{ comment.message }}
               </div>
-            </template>
+            </el-card>
           </div>
           <div v-else>
-            <p class="no-comment">暂无评论</p>
-            <br><br><br><br><br><br><br><br>
+            <el-empty description="暂无评论"></el-empty>
           </div>
         </div>
 
@@ -93,20 +93,6 @@ export default defineComponent({
 })
 </script>
 <style scoped>
-.user-avatar {
-  width: 35px;
-  height: 35px;
-  object-position: center;
-  border-radius: 50%;
-}
-
-.no-comment {
-  font-size: 30px;
-  margin-top: 20px;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
 .comment-hr {
   margin: 3px 10px;
   border-color: rgb(250, 250, 250);
@@ -120,6 +106,7 @@ export default defineComponent({
 .comment-box {
   margin-top: 30px;
   margin-left: 30px;
+  margin-right: 30px;
 }
 
 .body {

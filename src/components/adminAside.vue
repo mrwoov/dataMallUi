@@ -14,7 +14,7 @@
 
     <div v-for="item in auth_list" :key="item.id.toString()">
 
-      <div v-if="item.path==='/'">
+      <div v-if="item.path==='/admin'">
         <el-menu-item :index="item.path">
           <i :class="item.icon"></i>
           <span slot="title">{{ item.description }}</span>

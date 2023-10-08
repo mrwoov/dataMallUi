@@ -8,7 +8,7 @@
     <el-container>
       <el-header style=" border-bottom: 1px solid #ccc; ">
         <admin-header @asideCollapse=collapse :collapseBtnClass="collapseBtnClass" :collapse="collapse"
-                      :username="this.username"></admin-header>
+                      :title="title" :username="this.username"></admin-header>
       </el-header>
 
       <el-main>
@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import adminAside from "@/components/adminAside";
-import adminHeader from "@/components/adminHeader";
+import adminAside from "@/components/adminAside.vue";
+import adminHeader from "@/components/adminHeader.vue";
 import router from "@/router";
 import * as api_account from "@/api/account";
 
@@ -35,7 +35,8 @@ export default {
       isCollapse: false,
       sideWidth: 200,
       logoTextShow: true,
-      username: ""
+      username: "",
+      title: ""
     }
   },
   created() {
