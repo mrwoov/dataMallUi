@@ -12,21 +12,23 @@
       <b style="color: white" v-show="logoTextShow">后台管理系统</b>
     </div>
 
-    <div v-for="item in auth_list" :key="item.id">
-      <div v-if="item.path==='/admin'">
+    <div v-for="item in auth_list" :key="item.id.toString()">
+
+      <div v-if="item.path==='/'">
         <el-menu-item :index="item.path">
           <i :class="item.icon"></i>
           <span slot="title">{{ item.description }}</span>
         </el-menu-item>
       </div>
+
       <div v-else>
-        <el-submenu :index="item.id">
+        <el-submenu :index="item.id.toString()">
           <template slot="title">
             <i :class="item.icon"></i>
             <span slot="title">{{ item.description }}</span>
           </template>
           <div v-for="subItem in item.child" :key="subItem.id">
-            <el-menu-item :index="subItem.path">
+            <el-menu-item :index="'/admin/'+subItem.path">
               <i :class="subItem.icon"></i>
               <span slot="title">{{ subItem.description }}</span>
             </el-menu-item>

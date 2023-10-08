@@ -56,11 +56,6 @@ export default {
         router.push({name: 'portal_index'})
       }
     },
-    load_menu() {
-      api_role.get_auths().then(res => {
-        this.auth_list = res.data
-      })
-    },
     login() {
       this.$refs.loginForm.validate((valid) => {
         //表单检验
@@ -78,7 +73,19 @@ export default {
         }
       })
     },
-
+    setRouter(tk) {
+      api_role.get_authList(tk).then(res => {
+        for (let i = 0; i < res.data.length; i++) {
+          let item = res.data[i]
+          let newRouter = {
+            path: 'admin/' + item.path, name: item.name, component: () => import("../views/" + item.page)
+          }
+          console.log(newRouter)
+          this.$router.addRoute('admin', newRouter)
+        }
+        console.log(this.$router.options.routes)
+      })
+    }
   }
 }
 </script>

@@ -36,7 +36,7 @@ export default {
     logout() {
       this.$store.dispatch("user_logout")
       this.$message.success("退出成功")
-      router.push("../")
+      router.push({name: "portal_index"})
     },
     collapse() {
       this.$emit("asideCollapse")

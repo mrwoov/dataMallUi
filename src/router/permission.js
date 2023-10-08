@@ -1,4 +1,4 @@
-import router, {setRoutes} from '@/router/index'
+import router from '@/router/index'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from '@/store'
 // 导航守卫
@@ -12,14 +12,6 @@ router.beforeEach((to, from, next) => {
                 path: '/user/login'
             })
         }
-    }
-    console.log(store.state.dynamicRoutes)
-    if (store.state.dynamicRoutes.length === 1 && store.state.token != null) {
-        let new_router = setRoutes(store.state.token)
-        store.dispatch("dynamicRoutes", new_router).then(() => {
-            router.addRoute(store.getters.dynamicRoutes)
-            next({...to, replace: true})
-        })
     }
     next()
 })

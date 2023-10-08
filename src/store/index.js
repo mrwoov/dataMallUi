@@ -24,9 +24,6 @@ export default new Vuex.Store({
             state.token = null
             state.admin = null
         },
-        DYNAMIC_ROUTES(state, routes) {
-            state.dynamicRoutes = routes
-        }
 
     },
     actions: {
@@ -37,9 +34,6 @@ export default new Vuex.Store({
         },
         user_logout(context) {
             context.commit("del_login_info")
-        },
-        dynamicRoutes({commit}, routes) {
-            commit('DYNAMIC_ROUTES', routes)
         }
     },
     modules: {}
