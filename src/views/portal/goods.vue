@@ -98,6 +98,10 @@ export default defineComponent({
       })
     },
     follow() {
+      if (this.$store.state.token == null) {
+        this.$message.error("登录后才能收藏商品哦！")
+        return
+      }
       api_goods_collection.follow(this.goods_id).then(res => {
         this.collection_status = true
       })
@@ -114,7 +118,7 @@ export default defineComponent({
         return
       }
       api_goods_collection.getCollectionStatus(this.goods_id).then(res => {
-        if (res.status === "200") {
+        if (res.status === 200) {
           this.collection_status = true
           return
         }
