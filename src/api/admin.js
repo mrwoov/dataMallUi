@@ -4,7 +4,7 @@ import store from "@/store";
 let baseurl = "/admins/"
 let token = store.state.token
 let headers = {
-    token: token
+    token: token,
 }
 export const admin_saveOrUpdate = (data) => {
     return request({

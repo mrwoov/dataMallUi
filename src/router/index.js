@@ -39,8 +39,8 @@ const routes = [{
         path: "admins",
         name: "admin_admin",
         component: () => import("../views/admin/adminManageAdmin.vue")
-    }, {path: "role", name: "admin_role", component: () => import("../views/admin/adminManageRole.vue")}, {
-        path: "auth",
+    }, {path: "roles", name: "admin_role", component: () => import("../views/admin/adminManageRole.vue")}, {
+        path: "auths",
         name: "admin_auth",
         component: () => import("../views/admin/adminManageAuth.vue")
     }]

@@ -25,8 +25,8 @@
               <el-dropdown>
                 <span class="header-text">{{ username }}</span><i class="el-icon-arrow-down"
                                                                   style="margin-left: 5px"></i>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item v-if="this.admin!=='false'">
+                <el-dropdown-menu v-if="this.admin!=='false'" slot="dropdown">
+                  <el-dropdown-item>
                     <a href="http://localhost:8080/admin" class="header-text">后台管理</a>
                   </el-dropdown-item>
                   <el-dropdown-item>
@@ -166,7 +166,7 @@ export default {
 }
 
 .header-link {
-  font-size: 8px;
+  font-size: 12px;
   margin-left: 2px;
   margin-right: 2px;
   color: black;
@@ -174,7 +174,7 @@ export default {
 }
 
 .header-text {
-  font-size: 8px;
+  font-size: 12px;
   color: black;
   text-decoration: none;
 }

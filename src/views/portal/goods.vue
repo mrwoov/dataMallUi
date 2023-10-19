@@ -25,9 +25,12 @@
             </span>
               <span style="color: rgb(128,128,128);margin-right: 20px">|</span>
               <span>
-              <el-button class="collection-button" type="text">
-                <i class="el-icon-star-on" style="color: red;font-size: 18px"></i>
-                <span>收藏</span>
+                <el-button v-if="this.collection_status!==true" :key="1" class="collection-button"
+                           type="text" v-on:click="follow">
+                <span><i class="el-icon-star-off" style="font-size: 18px"></i>收藏</span>
+                </el-button>
+                <el-button v-else class="collection-button" type="text" v-on:click="unfollow">
+                <span><i class="el-icon-star-on" style="color: rgb(255, 112, 0);font-size: 20px"></i>已收藏</span>
               </el-button>
             </span>
             </div>
@@ -37,14 +40,17 @@
           <span class="comment-title">商品评论</span>
           <hr class="comment-hr">
           <div v-if="comment_list.length !==0">
-            <el-card v-for="comment in comment_list" :key="comment" body-style="margin-top:10px;">
-              <span><el-avatar :size="30" :src="comment.avatar"></el-avatar> </span>
+            <div v-for="comment in comment_list" :key="comment.id" style="margin-top:10px;">
+              <span style="text-align: center;vertical-align: middle"><el-avatar :size="30"
+                                                                                 :src="comment.avatar"></el-avatar> </span>
+              &nbsp;
               <span>{{ comment.username }}</span>
+              &nbsp;&nbsp;
               <span>{{ comment.createTime.replace("T", " ") }}</span>
               <div>
                 {{ comment.message }}
               </div>
-            </el-card>
+            </div>
           </div>
           <div v-else>
             <el-empty description="暂无评论"></el-empty>
@@ -61,6 +67,7 @@ import {defineComponent} from "vue";
 import PortalHeader from "@/components/portalHeader.vue";
 import * as api_goods from "@/api/goods"
 import * as api_goods_comment from "@/api/goods_comment"
+import * as api_goods_collection from "@/api/goods_collection"
 import PicShow from "@/components/picShow.vue";
 
 export default defineComponent({
@@ -70,12 +77,14 @@ export default defineComponent({
     return {
       goods_id: this.$route.params.goods_id,
       goods_data: [],
-      comment_list: []
+      comment_list: [],
+      collection_status: false
     }
   },
   created() {
     this.load()
     this.get_comment()
+    this.get_collection_status()
   },
   methods: {
     load() {
@@ -85,8 +94,34 @@ export default defineComponent({
     },
     get_comment() {
       api_goods_comment.get(this.goods_id, 1).then(res => {
-        console.log(res.data.records)
         this.comment_list = res.data.records
+      })
+    },
+    follow() {
+      api_goods_collection.follow(this.goods_id).then(res => {
+        this.collection_status = true
+      })
+    },
+    unfollow() {
+      api_goods_collection.unfollow(this.goods_id).then(res => {
+        console.log(res)
+        this.collection_status = false
+      })
+    },
+    get_collection_status() {
+      if (this.$store.state.token == null) {
+        this.collection_status = false
+        return
+      }
+      api_goods_collection.getCollectionStatus(this.goods_id).then(res => {
+        if (res.status === "200") {
+          this.collection_status = true
+          return
+        }
+        this.collection_status = false
+        console.log(res)
+      }).catch(e => {
+        this.collection_status = false
       })
     }
   }

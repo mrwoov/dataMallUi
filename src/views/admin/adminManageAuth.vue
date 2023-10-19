@@ -35,6 +35,10 @@
           prop="pagePath">
       </el-table-column>
       <el-table-column
+          label="描述"
+          prop="description">
+      </el-table-column>
+      <el-table-column
           label="权限图标">
         <template slot-scope="scope">
           <i :class="scope.row.icon"/>
@@ -62,6 +66,9 @@
         </el-form-item>
         <el-form-item label="父权限id">
           <el-input v-model="add_form.parentId" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="父权限id">
+          <el-input v-model="add_form.description" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="图标">
           <template slot-scope="scope">

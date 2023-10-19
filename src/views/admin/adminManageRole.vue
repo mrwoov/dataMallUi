@@ -61,7 +61,7 @@
           node-key="id"
           show-checkbox>
         <span slot-scope="{node,data}" class="custom-tree-node">
-          <span><i :class="data.icon"></i>{{ data.name }}</span>
+          <span><i :class="data.icon"></i>{{ data.description }}</span>
         </span>
       </el-tree>
       <div slot="footer" class="dialog-footer">
