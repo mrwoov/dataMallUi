@@ -30,7 +30,11 @@
                     <a href="http://localhost:8080/admin" class="header-text">后台管理</a>
                   </el-dropdown-item>
                   <el-dropdown-item>
-                    <el-button type="text" @click="logout" class="header-text">个人中心</el-button>
+                    <el-button class="header-text" type="text">个人中心</el-button>
+                  </el-dropdown-item><el-dropdown-item>
+                    <el-button class="header-text" type="text">
+                      <a class="header-text" href="http://localhost:8080/admin">商品管理</a>
+                    </el-button>
                   </el-dropdown-item>
                   <el-dropdown-item>
                     <el-button type="text" @click="logout" class="header-text">退出登录</el-button>
@@ -77,7 +81,7 @@
                 </el-col>
                 <el-col :span="8">
                   <span>
-                    <i class="el-icon-circle-plus-outline search-button"></i>
+                    <a href="/goods_release"><i class="el-icon-circle-plus-outline search-button"></i></a>
                     <i class="el-icon-goods search-button mr-5"></i>
                     </span>
                 </el-col>

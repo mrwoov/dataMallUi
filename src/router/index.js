@@ -19,7 +19,10 @@ const routes = [{
         path: "/goods/:goods_id", name: "goods", component: () => import("@/views/portal/goods.vue")
     }, {
         path: "/search", name: "portalGoodsSearch", component: () => import("@/views/portal/portalGoodsSearch.vue")
-    },]
+    }, {
+        path: "/goods_release", name: "goodsRelease", component: () => import("@/views/user/goodsRelease.vue")
+    }
+    ]
 }, {
     path: "/admin",
 

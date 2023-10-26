@@ -103,12 +103,13 @@ export default defineComponent({
         return
       }
       api_goods_collection.follow(this.goods_id).then(res => {
+        this.goods_data.collection++
         this.collection_status = true
       })
     },
     unfollow() {
       api_goods_collection.unfollow(this.goods_id).then(res => {
-        console.log(res)
+        this.goods_data.collection--
         this.collection_status = false
       })
     },
