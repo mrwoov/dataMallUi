@@ -8,7 +8,7 @@
         <a :href=card_link(item.id) class="card-link">
           <el-card :body-style="{ padding: '0px' }" class="card">
             <div class="img-box">
-              <img :src=item.picIndex class="image" alt="">
+              <img :src=item.picIndex alt="" class="image" style="width: 300px;height: 200px">
             </div>
             <div style="padding: 14px;">
               <span>{{ item.name }}</span>

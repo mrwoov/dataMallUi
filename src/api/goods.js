@@ -10,9 +10,12 @@ let headers = {
 export const release = (data) => {
     return request({
         url: baseurl + "/",
-        method: "patch",
-        headers: headers,
-        data
+        method: "post",
+        headers: {
+            "Content-Type": "multipart/form-data",
+            token: token,
+        },
+        data: data
     })
 }
 //用户下架商品

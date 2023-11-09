@@ -170,6 +170,9 @@ export default defineComponent({
 
 .img-box {
   margin: 30px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .goods-img {
