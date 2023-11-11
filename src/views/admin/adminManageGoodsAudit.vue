@@ -67,7 +67,6 @@ export default {
         this.goods_data = res.data
       })
     },
-    //todo: 完善审核api
     audit(state) {
       api_goods.audit(this.goods_data.id, state).then(res => {
         if (res.status === 200) {
