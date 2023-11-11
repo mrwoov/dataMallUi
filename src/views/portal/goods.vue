@@ -4,7 +4,7 @@
       <div class="body-box">
         <div class="goods-box">
           <div class="img-box">
-            <img class="goods-img" :src="goods_data.picIndex" alt="">
+            <img :src="goods_data.picIndex" alt="" class="goods-img" style="width: 300px;height: 200px">
           </div>
           <div class="goods-info">
             <div class="goods-title">
@@ -21,7 +21,7 @@
             </div>
             <div class="option-box">
             <span class="buy-button-box">
-              <el-button round class="buy-button" type="text">立即购买</el-button>
+              <el-button class="buy-button" round type="text" v-on:click="buy">立即购买</el-button>
             </span>
               <span style="color: rgb(128,128,128);margin-right: 20px">|</span>
               <span>
@@ -69,6 +69,7 @@ import * as api_goods from "@/api/goods"
 import * as api_goods_comment from "@/api/goods_comment"
 import * as api_goods_collection from "@/api/goods_collection"
 import PicShow from "@/components/picShow.vue";
+import router from "@/router";
 
 export default defineComponent({
   name: "goods",
@@ -87,6 +88,9 @@ export default defineComponent({
     this.get_collection_status()
   },
   methods: {
+    router() {
+      return router
+    },
     load() {
       api_goods.getInfo(this.goods_id).then(res => {
         this.goods_data = res.data
@@ -128,6 +132,12 @@ export default defineComponent({
       }).catch(e => {
         this.collection_status = false
       })
+    },
+    buy() {
+      let goods = [this.goods_id]
+      localStorage.removeItem("goods")
+      localStorage.setItem("goods", JSON.stringify(goods));
+      this.$router.push({name: "submitOrder"})
     }
   }
 })

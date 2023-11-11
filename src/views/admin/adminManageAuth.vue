@@ -67,7 +67,7 @@
         <el-form-item label="父权限id">
           <el-input v-model="add_form.parentId" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="父权限id">
+        <el-form-item label="描述">
           <el-input v-model="add_form.description" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="图标">

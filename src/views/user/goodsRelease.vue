@@ -96,7 +96,7 @@ export default {
       let imageMd5 = []
       let file = this.$refs.file.uploadFiles[0]
       if (this.fileList.name !== file.name) {
-        this.$message.error("文件上传出现错误1，请刷新后重试！")
+        this.$message.error("文件上传出现错误，请刷新后重试！")
         return false
       }
       fileMd5 = this.fileList.md5
@@ -106,7 +106,7 @@ export default {
         this.images.forEach(item => {
           if (item.name !== image.name) {
             flag += 1
-            this.$message.error("文件上传出现错误2，请刷新后重试！")
+            this.$message.error("文件上传出现错误，请刷新后重试！")
             return false
           }
           imageMd5.push(item.md5)

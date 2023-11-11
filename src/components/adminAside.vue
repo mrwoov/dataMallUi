@@ -20,7 +20,6 @@
           <span slot="title">{{ item.description }}</span>
         </el-menu-item>
       </div>
-
       <div v-else>
         <el-submenu :index="item.id.toString()">
           <template slot="title">

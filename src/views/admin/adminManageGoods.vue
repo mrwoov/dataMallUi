@@ -45,6 +45,9 @@
           <p v-if="scope.row.state===0">正常</p>
           <p v-else-if="scope.row.state===1">下架</p>
           <p v-else-if="scope.row.state===-1">冻结</p>
+          <p v-else-if="scope.row.state===-3">待审核</p>
+          <p v-else-if="scope.row.state===-4">审核未通过</p>
+          <p v-else-if="scope.row.state===-5">审核中</p>
         </template>
       </el-table-column>
       <el-table-column label="操作" width="200" align="center">
@@ -72,7 +75,7 @@
 <script>
 import * as api_goods from "@/api/goods"
 import * as api_goodsCategories from "@/api/goods_categories"
-import Breadcrumb from "@/components/breadcrumb.vue";
+import Breadcrumb from "@/components/breadcrumb.vue"
 
 export default {
   name: "adminManageGoods",

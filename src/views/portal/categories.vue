@@ -8,7 +8,7 @@
         <a :href=card_link(item.id) class="card-link">
           <el-card :body-style="{ padding: '0px' }" class="card">
             <div class="img-box">
-              <img :src=item.picIndex alt="" class="image" style="width: 300px;height: 200px">
+              <img :src=item.picIndex alt="" class="image" style="width: 100%;height: 200px">
             </div>
             <div style="padding: 14px;">
               <span>{{ item.name }}</span>
@@ -89,5 +89,13 @@ export default {
 .username {
   line-height: 40px;
   margin-left: 10px;
+}
+
+.img-box {
+  width: 300px;
+  margin: 30px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

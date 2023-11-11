@@ -21,8 +21,11 @@ const routes = [{
         path: "/search", name: "portalGoodsSearch", component: () => import("@/views/portal/portalGoodsSearch.vue")
     }, {
         path: "/goods_release", name: "goodsRelease", component: () => import("@/views/user/goodsRelease.vue")
-    }
-    ]
+    }, {
+        path: "/submit_order", name: "submitOrder", component: () => import("@/views/portal/submitOrder.vue")
+    }, {
+        path: "/pay_success", name: "paySuccess", component: () => import("@/views/portal/paySuccess.vue")
+    }]
 }, {
     path: "/admin",
 
@@ -39,13 +42,21 @@ const routes = [{
         name: "admin_categories",
         component: () => import("../views/admin/adminManageCategories.vue")
     }, {path: "goods", name: "admin_goods", component: () => import("../views/admin/adminManageGoods.vue")}, {
-        path: "admins",
-        name: "admin_admin",
-        component: () => import("../views/admin/adminManageAdmin.vue")
+        path: "admins", name: "admin_admin", component: () => import("../views/admin/adminManageAdmin.vue")
     }, {path: "roles", name: "admin_role", component: () => import("../views/admin/adminManageRole.vue")}, {
-        path: "auths",
-        name: "admin_auth",
-        component: () => import("../views/admin/adminManageAuth.vue")
+        path: "auths", name: "admin_auth", component: () => import("../views/admin/adminManageAuth.vue")
+    }, {
+        path: "goods_audit",
+        name: "admin_goods_audit",
+        component: () => import("../views/admin/adminManageGoodsAudit.vue")
+    }, {
+        path: "system_icon",
+        name: "admin_system_icon",
+        component: () => import("../views/admin/systemIcon.vue")
+    }, {
+        path: "system_config",
+        name: "admin_system_config",
+        component: () => import("../views/admin/systemConfig.vue")
     }]
 }]
 

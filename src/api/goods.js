@@ -6,6 +6,22 @@ let token = store.state.token
 let headers = {
     token: token
 }
+
+export const audit = (goodsId, state) => {
+    return request({
+        url: baseurl + "/audit?goodsId=" + goodsId + "&state=" + state,
+        method: "get",
+        headers
+    })
+}
+//获取未审核商品
+export const get_not_audit = () => {
+    return request({
+        url: baseurl + "/get_not_audit",
+        method: "get",
+        headers: headers,
+    })
+}
 //用户上传商品
 export const release = (data) => {
     return request({
