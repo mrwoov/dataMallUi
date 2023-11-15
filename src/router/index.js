@@ -50,13 +50,15 @@ const routes = [{
         name: "admin_goods_audit",
         component: () => import("../views/admin/adminManageGoodsAudit.vue")
     }, {
-        path: "system_icon",
-        name: "admin_system_icon",
-        component: () => import("../views/admin/systemIcon.vue")
+        path: "system_icon", name: "admin_system_icon", component: () => import("../views/admin/systemIcon.vue")
     }, {
-        path: "system_config",
-        name: "admin_system_config",
-        component: () => import("../views/admin/systemConfig.vue")
+        path: "system_config", name: "admin_system_config", component: () => import("../views/admin/systemConfig.vue")
+    }, {
+        path: "orders", name: "admin_order", component: () => import("../views/admin/adminManageOrder.vue")
+    }, {
+        path: "orders_detail",
+        name: "admin_order_detail",
+        component: () => import("../views/admin/adminOrderDetail.vue")
     }]
 }]
 

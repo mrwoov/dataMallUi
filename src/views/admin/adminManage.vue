@@ -53,7 +53,7 @@ export default {
             this.$message.error("登录过期")
             this.login_state = false;
             this.$store.dispatch("user_logout")
-            router.push("login")
+            router.push({name: "login"})
             return;
           }
           this.login_state = true;

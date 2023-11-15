@@ -52,8 +52,8 @@
       </el-table-column>
       <el-table-column label="操作" width="200" align="center">
         <template v-slot:default="scope">
-          <el-button type="danger" @click="freeze(scope.row)">冻结<i class="el-icon-close"></i></el-button>
-          <el-button type="success" @click="unfreeze(scope.row)">解冻<i class="el-icon-check"></i></el-button>
+          <el-button type="danger" @click="freeze(scope.row,'freeze')">冻结<i class="el-icon-close"></i></el-button>
+          <el-button type="success" @click="freeze(scope.row,'unfreeze')">解冻<i class="el-icon-check"></i></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -69,6 +69,17 @@
           :total="page_control.total">
       </el-pagination>
     </div>
+    <el-dialog :visible.sync="dialogFormVisible" title="商品审核" width="30%">
+      <el-form label-width="80px" size="small">
+        <el-form-item label="理由">
+          <el-input v-model="freeze_data.message" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="free_request">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -86,6 +97,11 @@ export default {
       token: this.$store.state.token,
       table_data: [],
       headerBg: 'headerBg',
+      freeze_data: {
+        id: "",
+        message: "",
+        option: ""
+      },
       page_control: {
         total: 0,
         pageNum: 1,
@@ -125,25 +141,25 @@ export default {
         this.categories_list = res.data
       })
     },
-    freeze(row) {
-      api_goods.admin_freeze(row.id).then(res => {
-        if (res.status === 200) {
-          this.$message.success("操作成功")
-          this.load()
-          return
-        }
-        this.$message.error("操作失败")
+    free_request() {
+      let request_data = {
+        id: this.freeze_data.id,
+        option: this.freeze_data.option,
+        message: this.freeze_data.message
+      }
+      api_goods.admin_freeze(request_data).then(res => {
+        this.$message.success(res.message)
+      }).catch(e => {
+        this.$message.error(res.message)
       })
+      this.dialogFormVisible = false
+      this.load()
     },
-    unfreeze(row) {
-      api_goods.admin_unfreeze(row.id).then(res => {
-        if (res.status === 200) {
-          this.$message.success("操作成功")
-          this.load()
-          return
-        }
-        this.$message.error("操作失败")
-      })
+    freeze(row, option) {
+      this.freeze_data.message = ""
+      this.freeze_data.option = option
+      this.freeze_data.id = row.id
+      this.dialogFormVisible = true
     },
     //多选
     handleSelectionChange(val) {

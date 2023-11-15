@@ -69,22 +69,16 @@ export const del = (goodsId) => {
     })
 }
 
-//管理员冻结商品
-export const admin_freeze = (goodsId) => {
+//管理员冻结解冻商品
+export const admin_freeze = (data) => {
     return request({
-        url: baseurl + "/admin/freeze?goodsId="+goodsId,
+        url: baseurl + "/admin/freeze",
         method: "post",
         headers: headers,
+        data: data
     })
 }
-//管理员解冻商品
-export const admin_unfreeze = (goodsId) => {
-    return request({
-        url: baseurl + "/admin/unfreeze?goodsId="+goodsId,
-        method: "post",
-        headers: headers
-    })
-}
+
 //游客获取单个商品信息
 export const getInfo = (goodsId) => {
     return request({
