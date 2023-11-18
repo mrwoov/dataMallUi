@@ -73,8 +73,8 @@
 </template>
 <script>
 import Breadcrumb from "@/components/breadcrumb.vue";
-import * as api_role from "@/api/role"
-import * as api_auth from "@/api/auth"
+import * as api_role from "@/api/admin/role"
+import * as api_auth from "@/api/admin/auth"
 
 export default {
   name: "",

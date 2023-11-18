@@ -29,7 +29,7 @@
 </template>
 <script>
 import PortalHeader from "@/components/portalHeader.vue";
-import * as api_goods from "@/api/goods"
+import * as api_goods from "@/api/portal/goods"
 
 export default {
   name: "categories",

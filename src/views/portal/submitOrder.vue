@@ -29,8 +29,8 @@
   </div>
 </template>
 <script>
-import * as api_goods from "@/api/goods";
-import * as api_order from "@/api/order"
+import * as api_goods from "@/api/portal/goods";
+import * as api_order from "@/api/portal/order"
 
 export default {
   name: "submitOrder",
@@ -59,7 +59,7 @@ export default {
       })
       api_order.submit(ids).then(res => {
         let trade_no = res.data.trade_no
-        window.location.href = "http://localhost:8081/orderPay/pay?trade_no=" + trade_no
+        window.location.href = "http://localhost:9000/order/order/pay?trade_no=" + trade_no
       })
     }
   }

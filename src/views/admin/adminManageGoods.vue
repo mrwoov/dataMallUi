@@ -84,8 +84,8 @@
 </template>
 
 <script>
-import * as api_goods from "@/api/goods"
-import * as api_goodsCategories from "@/api/goods_categories"
+import * as api_goods from "@/api/admin/goods"
+import * as api_portal_goodsCategories from "@/api/portal/goods_categories"
 import Breadcrumb from "@/components/breadcrumb.vue"
 
 export default {
@@ -137,7 +137,7 @@ export default {
       return window.document.location.origin + '/goods/' + id;
     },
     getCategoriesList() {
-      api_goodsCategories.getList().then(res => {
+      api_portal_goodsCategories.getList().then(res => {
         this.categories_list = res.data
       })
     },

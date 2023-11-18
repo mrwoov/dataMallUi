@@ -25,7 +25,7 @@
 </template>
 <script>
 import router from "@/router";
-import * as api_account from "@/api/account";
+import * as api_account from "@/api/portal/account";
 
 export default {
   name: "user_login",

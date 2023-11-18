@@ -46,7 +46,7 @@
 </template>
 <script>
 import Breadcrumb from "@/components/breadcrumb.vue";
-import * as api_goods from "@/api/goods"
+import * as api_goods from "@/api/admin/goods"
 
 export default {
   name: "",

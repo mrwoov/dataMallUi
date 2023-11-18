@@ -15,7 +15,7 @@
       当前订单状态：已关闭
     </span>
       <div style="padding: 30px">
-        <span>订单商品</span>
+        <span>订单商品快照</span>
         <el-table :data="goods_list">
           <el-table-column label="商品图片">
             <template v-slot:default="scope">
@@ -31,7 +31,7 @@
 </template>
 <script>
 import Breadcrumb from "@/components/breadcrumb.vue";
-import * as api_order from "@/api/order"
+import * as api_order from "@/api/admin/order"
 
 export default {
   name: "",
@@ -52,7 +52,7 @@ export default {
       api_order.adminGetOrderDetail(this.id).then(res => {
         console.log(res)
         this.order_state = res.data.state
-        this.goods_list = res.data.goods
+        this.goods_list = res.data.goodsSnapshots
       }).catch(e => {
         this.$router.push({name: "admin_order"})
       })

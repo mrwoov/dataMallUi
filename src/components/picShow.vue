@@ -9,7 +9,7 @@
 </template>
 <script>
 
-import * as api_goodsPic from "@/api/goods_pic";
+import * as api_goodsPic from "@/api/portal/goods_pic";
 
 export default {
   name: "pic-show",

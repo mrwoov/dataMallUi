@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import * as api_role from "@/api/role";
+import * as api_role from "@/api/admin/role";
 
 export default {
   name: "AdminAside",

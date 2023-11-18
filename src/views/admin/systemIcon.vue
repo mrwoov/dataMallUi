@@ -69,7 +69,7 @@
 </template>
 <script>
 import Breadcrumb from "@/components/breadcrumb.vue";
-import * as api_systemDict from "@/api/system_dict"
+import * as api_systemDict from "@/api/admin/system_dict"
 
 export default {
   name: "systemIcon",

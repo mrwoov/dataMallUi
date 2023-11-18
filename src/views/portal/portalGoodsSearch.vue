@@ -30,7 +30,7 @@
   </div>
 </template>
 <script>
-import * as api_goods from "@/api/goods"
+import * as api_goods from "@/api/portal/goods"
 
 export default {
   name: "portalGoodsSearch",

@@ -33,7 +33,7 @@
                     <el-button class="header-text" type="text">个人中心</el-button>
                   </el-dropdown-item><el-dropdown-item>
                     <el-button class="header-text" type="text">
-                      <a class="header-text" href="http://localhost:8080/admin">商品管理</a>
+                      <a class="header-text" href="http://localhost:8080/admin">我的订单</a>
                     </el-button>
                   </el-dropdown-item>
                   <el-dropdown-item>
@@ -94,8 +94,8 @@
   </div>
 </template>
 <script>
-import * as api_account from "@/api/account";
-import * as api_goodsCategories from "@/api/goods_categories"
+import * as api_account from "@/api/portal/account";
+import * as api_goodsCategories from "@/api/portal/goods_categories"
 
 export default {
   name: "portalHeader",

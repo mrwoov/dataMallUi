@@ -8,7 +8,7 @@
   </div>
 </template>
 <script>
-import * as api_order from "@/api/order"
+import * as api_order from "@/api/portal/order"
 
 export default {
   name: "",

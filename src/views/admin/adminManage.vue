@@ -25,7 +25,7 @@
 import adminAside from "@/components/adminAside.vue";
 import adminHeader from "@/components/adminHeader.vue";
 import router from "@/router";
-import * as api_account from "@/api/account";
+import * as api_account from "@/api/portal/account";
 
 export default {
   name: 'admin-manage',

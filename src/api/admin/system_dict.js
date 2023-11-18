@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 import store from "@/store";
 
-let baseurl = "/systemDict/"
+let baseurl = "admin/systemDict/"
 let token = store.state.token
 let headers = {
     token: token

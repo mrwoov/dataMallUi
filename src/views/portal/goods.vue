@@ -65,9 +65,9 @@
 <script>
 import {defineComponent} from "vue";
 import PortalHeader from "@/components/portalHeader.vue";
-import * as api_goods from "@/api/goods"
-import * as api_goods_comment from "@/api/goods_comment"
-import * as api_goods_collection from "@/api/goods_collection"
+import * as api_goods from "@/api/portal/goods"
+import * as api_goods_comment from "@/api/portal/goods_comment"
+import * as api_goods_collection from "@/api/portal/goods_collection"
 import PicShow from "@/components/picShow.vue";
 import router from "@/router";
 

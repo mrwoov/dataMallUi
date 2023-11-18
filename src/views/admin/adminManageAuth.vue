@@ -90,7 +90,7 @@
 </template>
 <script>
 import Breadcrumb from "@/components/breadcrumb.vue";
-import * as api_auth from '@/api/auth'
+import * as api_auth from '@/api/admin/auth'
 
 export default {
   name: "adminManageAuth",

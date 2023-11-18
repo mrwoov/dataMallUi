@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 import store from "@/store";
 
-let baseurl = "/roles/"
+let baseurl = "admin/roles/"
 let token = store.state.token
 let headers = {
     token: token

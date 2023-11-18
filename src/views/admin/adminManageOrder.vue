@@ -20,7 +20,7 @@
       </el-table-column>
       <el-table-column label="#" prop="id" width="60">
       </el-table-column>
-      <el-table-column label="订单号" prop="tradeNo" width="120">
+      <el-table-column label="订单号" prop="tradeNo" width="150">
       </el-table-column>
       <el-table-column label="提交时间" prop="createTime"></el-table-column>
       <el-table-column label="购买用户" prop="username"></el-table-column>
@@ -61,7 +61,7 @@
 </template>
 <script>
 import Breadcrumb from "@/components/breadcrumb.vue";
-import * as api_order from "@/api/order"
+import * as api_order from "@/api/admin/order"
 
 export default {
   name: "adminOrder",

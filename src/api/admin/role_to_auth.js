@@ -1,12 +1,12 @@
 import request from '@/utils/request'
 import store from "@/store";
 
-let baseurl = "/goodsCategories"
+let baseurl = "admin/roleToAuths"
 let token = store.state.token
 let headers = {
     token: token
 }
-//管理员创建或修改商品分类
+// 管理员新增或修改角色权限
 export const admin_saveOrUpdate = (data) => {
     return request({
         url: baseurl + "/admin",
@@ -15,7 +15,7 @@ export const admin_saveOrUpdate = (data) => {
         data
     })
 }
-//管理员删除商品分类
+// 管理员删除by id 角色权限
 export const admin_del = (id) => {
     return request({
         url: baseurl + "/admin/" + id,
@@ -23,30 +23,35 @@ export const admin_del = (id) => {
         headers: headers
     })
 }
-//管理员批量删除商品分类
+//管理员批量删除角色权限
 export const admin_delBatch = (ids) => {
     return request({
         url: baseurl + "/admin/del_batch",
         method: "post",
         headers: headers,
-        data: ids,
+        ids
     })
 }
-//管理员分页查询商品分类
-export const admin_query = (data, page_data) => {
+//管理员查找单个角色权限
+export const admin_get = (id) => {
     return request({
-        url: baseurl + "/admin/query?pageNum=" + page_data.pageNum + "&pageSize=" + page_data.pageSize,
+        url: baseurl + "/admin/" + id,
+        method: "get",
+        headers: headers
+    })
+}
+
+//管理员分页查询角色权限
+export const admin_query = (role_name, auth_name, page_size, page_num) => {
+    return request({
+        url: baseurl + "/admin/query?page_size=" + page_size + "&page_num=" + page_num,
         method: "post",
         headers: headers,
         data: {
-            name: data.name,
-            url: data.url
+            roleName: role_name,
+            authName: auth_name,
+            pageNum: page_num,
+            pageSize: page_size
         }
-    })
-}
-export const getList = () => {
-    return request({
-        url: baseurl + "/",
-        method: "get"
     })
 }

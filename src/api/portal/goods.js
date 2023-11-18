@@ -1,26 +1,10 @@
 import request from '@/utils/request'
 import store from "@/store";
 
-let baseurl = "/goods"
+let baseurl = "goods/goods"
 let token = store.state.token
 let headers = {
     token: token
-}
-
-export const audit = (goodsId, state) => {
-    return request({
-        url: baseurl + "/audit?goodsId=" + goodsId + "&state=" + state,
-        method: "get",
-        headers
-    })
-}
-//获取未审核商品
-export const get_not_audit = () => {
-    return request({
-        url: baseurl + "/get_not_audit",
-        method: "get",
-        headers: headers,
-    })
 }
 //用户上传商品
 export const release = (data) => {
@@ -69,30 +53,12 @@ export const del = (goodsId) => {
     })
 }
 
-//管理员冻结解冻商品
-export const admin_freeze = (data) => {
-    return request({
-        url: baseurl + "/admin/freeze",
-        method: "post",
-        headers: headers,
-        data: data
-    })
-}
-
+//todo:【前端】发起评论，删除评论，举报评论
 //游客获取单个商品信息
 export const getInfo = (goodsId) => {
     return request({
         url: baseurl + "/info/" + goodsId,
         method: "get"
-    })
-}
-//管理员分页查询商品列表
-export const admin_page = (data, pageSize, pageNum) => {
-    return request({
-        url: baseurl + "/admin/page?pageSize=" + pageSize + "&pageNum=" + pageNum,
-        method: "post",
-        headers: headers,
-        data: data
     })
 }
 //查询单个用户发布的发布的商品列表
@@ -113,19 +79,19 @@ export const update = (data) => {
     })
 }
 //搜索商品
-export const search = (keyword) =>{
+export const search = (keyword) => {
     return request({
-        url:baseurl+"/search",
-        method:"get",
-        params:{
-            keyword:keyword
+        url: baseurl + "/search",
+        method: "get",
+        params: {
+            keyword: keyword
         }
     })
 }
 //查看分类下商品
-export const categoriesGoods = (categories_name)=>{
+export const categoriesGoods = (categories_name) => {
     return request({
-        url:baseurl+"/categories?categories="+categories_name,
-        method:"get",
+        url: baseurl + "/categories?categories=" + categories_name,
+        method: "get",
     })
 }

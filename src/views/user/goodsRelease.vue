@@ -68,8 +68,8 @@
   </div>
 </template>
 <script>
-import * as api_goodsCategories from "@/api/goods_categories";
-import * as api_goods from "@/api/goods"
+import * as api_goodsCategories from "@/api/portal/goods_categories";
+import * as api_goods from "@/api/portal/goods"
 import store from "@/store";
 import router from "@/router";
 

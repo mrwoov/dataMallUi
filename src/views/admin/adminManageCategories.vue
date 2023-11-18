@@ -86,7 +86,7 @@
   </div>
 </template>
 <script>
-import * as api_goodsCategories from "@/api/goods_categories"
+import * as api_goodsCategories from "@/api/admin/goods_categories"
 import Breadcrumb from "@/components/breadcrumb.vue";
 
 export default {
