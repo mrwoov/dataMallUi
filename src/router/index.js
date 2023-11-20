@@ -25,10 +25,16 @@ const routes = [{
         path: "/submit_order", name: "submitOrder", component: () => import("@/views/portal/submitOrder.vue")
     }, {
         path: "/pay_success", name: "paySuccess", component: () => import("@/views/portal/paySuccess.vue")
-    }]
+    }, {
+        path: "/user_center/:username", name: "userCenter", component: () => import("@/views/user/personalCenter.vue")
+    }, {
+        path: "/user/order",
+        name: "myOrder",
+        component: () => import("@/views/user/myOrder.vue")
+    }, {path: "/user/collection", name: "myCollection", component: () => import("@/views/user/myCollection.vue")}
+    ]
 }, {
     path: "/admin",
-
     component: () => import("../views/admin/adminManage.vue"),
     meta: {requireAuth: true, requireAdmin: true},
     redirect: '/',

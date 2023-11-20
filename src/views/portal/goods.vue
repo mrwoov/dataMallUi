@@ -41,8 +41,9 @@
           <hr class="comment-hr">
           <div v-if="comment_list.length !==0">
             <div v-for="comment in comment_list" :key="comment.id" style="margin-top:10px;">
-              <span style="text-align: center;vertical-align: middle"><el-avatar :size="30"
-                                                                                 :src="comment.avatar"></el-avatar> </span>
+              <span style="text-align: center;vertical-align: middle">
+                <el-avatar :size="30" :src="comment.avatar"></el-avatar> 
+              </span>
               &nbsp;
               <span>{{ comment.username }}</span>
               &nbsp;&nbsp;

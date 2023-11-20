@@ -6,6 +6,18 @@ let token = store.state.token
 let headers = {
     token: token, path: baseurl
 }
+//判断ID和token是否为同一人
+export const isOne = (accountId) => {
+    return request({
+        url: baseurl + "is_one/" + accountId, headers: headers, method: "get"
+    })
+}
+//获取用户信息
+export const getUserInfo = (username) => {
+    return request({
+        url: baseurl + "userInfo/" + username, method: "get"
+    })
+}
 //登录
 export const login = (data) => {
     return request({

@@ -17,9 +17,12 @@
               <span class="collection-num">{{ item.collection }}人想要</span>
               <br>
               <span class="owner-username">
+                <a :href="user_link(item.username)" class="username">
                 <el-avatar :size="30" :src="item.avatar"></el-avatar>
-                <a :href="user_link(item.uid)" class="username">{{ item.username }}</a>
+                {{ item.username }}
+              </a>
               </span>
+
             </div>
           </el-card>
         </a>
@@ -53,7 +56,7 @@ export default {
       return window.document.location.origin + "/goods/" + id
     },
     user_link(id) {
-      return window.document.location.origin + "/user/" + id
+      return window.document.location.origin + "/user_center/" + id
     }
   }
 }

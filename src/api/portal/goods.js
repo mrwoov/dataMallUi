@@ -95,3 +95,10 @@ export const categoriesGoods = (categories_name) => {
         method: "get",
     })
 }
+//查看用户的商品
+export const getUserGoods = (accountId) => {
+    return request({
+        url: baseurl + "/list/" + accountId,
+        method: "get"
+    })
+}

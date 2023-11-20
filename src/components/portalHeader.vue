@@ -30,10 +30,11 @@
                     <a href="http://localhost:8080/admin" class="header-text">后台管理</a>
                   </el-dropdown-item>
                   <el-dropdown-item>
-                    <el-button class="header-text" type="text">个人中心</el-button>
-                  </el-dropdown-item><el-dropdown-item>
+                    <a :href="this.user_center_link()" class="header-text">个人中心</a>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
                     <el-button class="header-text" type="text">
-                      <a class="header-text" href="http://localhost:8080/admin">我的订单</a>
+                      <a class="header-text" href="http://localhost:8080/user/order">我的订单</a>
                     </el-button>
                   </el-dropdown-item>
                   <el-dropdown-item>
@@ -82,7 +83,7 @@
                 <el-col :span="8">
                   <span>
                     <a href="/goods_release"><i class="el-icon-circle-plus-outline search-button"></i></a>
-                    <i class="el-icon-goods search-button mr-5"></i>
+                    <a href="/user/collection"><i class="el-icon-goods search-button mr-5"></i></a>
                     </span>
                 </el-col>
               </el-row>
@@ -113,6 +114,9 @@ export default {
     this.check_token();
   },
   methods: {
+    user_center_link() {
+      return "http://localhost:8080/user_center/" + this.username
+    },
     load() {
       api_goodsCategories.getList().then(res => {
         const data = res.data

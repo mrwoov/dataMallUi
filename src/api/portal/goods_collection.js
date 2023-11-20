@@ -6,6 +6,12 @@ let token = store.state.token
 let headers = {
     token: token
 }
+//获取用户收藏的商品
+export const getUserFollow = () => {
+    return request({
+        url: baseurl + "get_user_follow", headers, method: "get",
+    })
+}
 //收藏商品
 export const follow = (goodsId) => {
     return request({
