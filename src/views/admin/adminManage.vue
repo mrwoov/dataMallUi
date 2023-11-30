@@ -47,13 +47,14 @@ export default {
   },
   methods: {
     check_token() {
+      let nowPath = window.location.href
       if (this.$store.state.token !== null) {
         api_account.checkToken().then(res => {
           if (res.status !== 200) {
             this.$message.error("登录过期")
             this.login_state = false;
             this.$store.dispatch("user_logout")
-            router.push({name: "login"})
+            this.$router.push({"name": "user_login", query: {url: nowPath}})
             return;
           }
           this.login_state = true;
@@ -67,7 +68,7 @@ export default {
           this.$message.error("登录过期")
           this.login_state = false;
           this.$store.dispatch("user_logout")
-          router.push("user_login")
+          this.$router.push({"name": "user_login", query: {url: nowPath}})
         })
       }
     },

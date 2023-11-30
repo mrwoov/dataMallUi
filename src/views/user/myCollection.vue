@@ -55,8 +55,16 @@ export default {
   },
   created() {
     this.load()
+    this.check_login()
   },
   methods: {
+    check_login() {
+      let token = this.$store.state.token
+      if (token == null) {
+        let nowPath = window.location.href
+        this.$router.push({"name": "user_login", query: {url: nowPath}})
+      }
+    },
     load() {
       api_portal_collection.getUserFollow().then(res => {
         this.goodsList = res.data

@@ -6,6 +6,13 @@ let token = store.state.token
 let headers = {
     token: token
 }
+//获取首页轮播图
+export const getGoodsPortalIndex = () => {
+    return request({
+        url: baseurl + "/getPortalIndex",
+        method: "get"
+    })
+}
 //用户上传商品
 export const release = (data) => {
     return request({

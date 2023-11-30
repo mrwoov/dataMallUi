@@ -38,8 +38,9 @@
           <el-form-item label="资源展示图">
             <el-upload
                 ref="picUpload" :auto-upload="true" :headers="uploadHeaders" :limit="9"
-                :on-remove="handleRemove" :on-success="(response) => {return uploadPicSuccess(response)}" accept=".png,.jpg,.jpeg"
-                action="http://localhost:8081/goodsFiles/user/upload_pic"
+                :on-remove="handleRemove" :on-success="(response) => {return uploadPicSuccess(response)}"
+                accept=".png,.jpg,.jpeg"
+                action="http://localhost:9000/goods/goodsFiles/user/upload_pic"
                 list-type="picture-card"
             >
               <i slot="default" class="el-icon-plus"></i>
@@ -87,9 +88,17 @@ export default {
     }
   },
   created() {
+    this.check_login();
     this.getCategoriesList();
   },
   methods: {
+    check_login() {
+      let token = this.$store.state.token
+      if (token == null) {
+        let nowPath = window.location.href
+        this.$router.push({"name": "user_login", query: {url: nowPath}})
+      }
+    },
     release() {
       //检查文件&构造参数
       let fileMd5 = ""

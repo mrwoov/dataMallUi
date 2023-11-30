@@ -23,12 +23,15 @@
                                                       href="http://localhost:8080/user/login">登录</a></span>
             <span class="header-text" v-if="login_state">&nbsp;|&nbsp;
               <el-dropdown>
-                <span class="header-text">{{ username }}</span><i class="el-icon-arrow-down"
-                                                                  style="margin-left: 5px"></i>
-                <el-dropdown-menu v-if="this.admin!=='false'" slot="dropdown">
+                <span class="header-text">{{ username }}</span>
+                <i class="el-icon-arrow-down" style="margin-left: 5px"></i>
+                <el-dropdown-menu slot="dropdown">
+                <template v-if="this.admin==='true'">
                   <el-dropdown-item>
                     <a href="http://localhost:8080/admin" class="header-text">后台管理</a>
                   </el-dropdown-item>
+                </template>
+                
                   <el-dropdown-item>
                     <a :href="this.user_center_link()" class="header-text">个人中心</a>
                   </el-dropdown-item>
@@ -144,6 +147,7 @@ export default {
     logout() {
       this.$store.dispatch("user_logout")
       this.login_state = false
+      this.$router.push({name: "portal_index"})
     },
     check_token() {
       if (this.$store.state.token != null) {

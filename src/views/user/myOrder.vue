@@ -96,8 +96,16 @@ export default {
   },
   created() {
     this.load()
+    this.check_login()
   },
   methods: {
+    check_login() {
+      let token = this.$store.state.token
+      if (token == null) {
+        let nowPath = window.location.href
+        this.$router.push({"name": "user_login", query: {url: nowPath}})
+      }
+    },
     load() {
       api_portal_order.userPage(this.page_control.pageNum, this.page_control.pageSize, this.search_form).then(res => {
         this.table_data = res.data.records

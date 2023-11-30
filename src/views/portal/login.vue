@@ -50,8 +50,12 @@ export default {
   },
   methods: {
     load() {
-      if (this.$store.state.token != null) {
+      console.log(this.$store.state.token)
+      if (this.$store.state.token !== undefined && this.$store.state.token !== null) {
         alert("您已登录！");
+        if (this.$route.query.url !== "" && this.$route.query.url !== undefined) {
+          window.location.href = this.$route.query.url
+        }
         router.push({name: 'portal_index'})
       }
     },
@@ -67,7 +71,11 @@ export default {
             }
             this.$store.dispatch("user_login", res)
             this.$message.success("登录成功！");
-            router.push({name: "portal_index"})
+            if (this.$route.query.url !== "" && this.$route.query.url !== undefined) {
+              window.location.href = this.$route.query.url
+            } else {
+              this.$router.push({name: "portal_index", query: ""})
+            }
           })
         }
       })

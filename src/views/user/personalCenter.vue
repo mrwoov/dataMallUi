@@ -69,9 +69,17 @@ export default {
     }
   },
   created() {
+    this.check_login()
     this.get_user_info()
   },
   methods: {
+    check_login() {
+      let token = this.$store.state.token
+      if (token == null) {
+        let nowPath = window.location.href
+        this.$router.push({"name": "user_login", query: {url: nowPath}})
+      }
+    },
     get_user_info() {
       api_portal_account.getUserInfo(this.username).then(res => {
         this.userInfo = res.data

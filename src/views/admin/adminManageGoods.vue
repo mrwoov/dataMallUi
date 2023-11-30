@@ -50,6 +50,16 @@
           <p v-else-if="scope.row.state===-5">审核中</p>
         </template>
       </el-table-column>
+      <el-table-column label="是否首页展示">
+        <template v-slot:default="scope">
+          <el-switch
+              v-model="scope.row.showPortal"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              @change="changeGoodsShowSwitch(scope.row)">
+          </el-switch>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" width="200" align="center">
         <template v-slot:default="scope">
           <el-button type="danger" @click="freeze(scope.row,'freeze')">冻结<i class="el-icon-close"></i></el-button>
@@ -130,6 +140,16 @@ export default {
         const data = res.data
         this.page_control.total = data.total
         this.table_data = data.records;
+      })
+    },
+    changeGoodsShowSwitch(row) {
+      api_goods.changeGoodsPortalShow(row.id, row.showPortal).then(res => {
+        if (res.status == 200) {
+          this.$message.success("操作成功")
+        } else {
+          this.$message.error("操作失败")
+        }
+        
       })
     },
     //生成商品链接
