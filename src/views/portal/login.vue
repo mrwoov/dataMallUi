@@ -14,9 +14,13 @@
                     type="password"></el-input>
         </el-form-item>
         <el-form-item>
-          <div class="forget">
-            <a href="/user/forget">忘记密码？</a>
+          <div class="forget" style="display: flex">
+            <span><a href="/user/forget">忘记密码？</a></span>
+            <span style="margin-left: 260px"> <a href="/user/reg">没有账号？</a></span>
+
           </div>
+        </el-form-item>
+        <el-form-item>
           <el-button class="login-button" size="medium" native-type="submit" round>继续</el-button>
         </el-form-item>
       </el-form>

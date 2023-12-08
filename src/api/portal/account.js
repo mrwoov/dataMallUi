@@ -39,6 +39,12 @@ export const reg = (code, username, password, email) => {
         }
     })
 }
+//用户注册发送验证码
+export const regSendCode = (email) => {
+    return request({
+        url: baseurl + "/reg/send_code/" + email, method: "get"
+    })
+}
 //用户忘记密码发送验证码
 export const forgetSendCode = (email) => {
     return request({

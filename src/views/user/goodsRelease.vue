@@ -9,7 +9,7 @@
           <div class="upload-box">
             <el-upload ref="file" :auto-upload="true" :headers="uploadHeaders"
                        :limit="1" :on-success="(response) => {return uploadFileSuccess(response)}"
-                       action="http://localhost:8081/goodsFiles/user/upload_file" class="upload"
+                       action="http://localhost:9000/goods/goodsFiles/user/upload_file" class="upload"
                        drag>
               <i class="el-icon-upload"></i>
               <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em><br>（上传内容将上传平台区块链，请勿上传涉嫌侵权文件）

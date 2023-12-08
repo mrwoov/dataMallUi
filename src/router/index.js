@@ -28,11 +28,13 @@ const routes = [{
     }, {
         path: "/user_center/:username", name: "userCenter", component: () => import("@/views/user/personalCenter.vue")
     }, {
-        path: "/user/order",
-        name: "myOrder",
-        component: () => import("@/views/user/myOrder.vue")
-    }, {path: "/user/collection", name: "myCollection", component: () => import("@/views/user/myCollection.vue")}
-    ]
+        path: "/user/order", name: "myOrder", component: () => import("@/views/user/myOrder.vue")
+    }, {
+        path: "/user/collection",
+        name: "myCollection",
+        component: () => import("@/views/user/myCollection.vue")
+    }, {path: "/user/reg", name: "user_reg", component: () => import("@/views/portal/reg.vue")}
+        , {path: "/user/forget", name: "user_forget", component: () => import("@/views/portal/forget.vue")}]
 }, {
     path: "/admin",
     component: () => import("../views/admin/adminManage.vue"),
