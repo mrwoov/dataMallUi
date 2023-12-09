@@ -42,8 +42,16 @@ export default {
   },
   created() {
     this.load()
+    this.check_login()
   },
   methods: {
+    check_login() {
+      let token = this.$store.state.token
+      if (token == null) {
+        let nowPath = window.location.href
+        this.$router.push({"name": "user_login", query: {url: nowPath}})
+      }
+    },
     load() {
       console.log(this.goods_ids)
       this.goods_ids.forEach(goods_id => {
@@ -54,12 +62,13 @@ export default {
     },
     submit() {
       let ids = []
+      let host = 'http://' + document.location.hostname
       this.goods_data.forEach(goods => {
         ids.push(goods.id)
       })
       api_order.submit(ids).then(res => {
         let trade_no = res.data.trade_no
-        window.location.href = "http://localhost:9000/order/order/pay?trade_no=" + trade_no
+        window.location.href = host + ":9000/order/order/pay?trade_no=" + trade_no + "&return_url=" + host + ":8080/pay_success"
       })
     }
   }

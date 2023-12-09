@@ -89,6 +89,13 @@ export default defineComponent({
     this.get_collection_status()
   },
   methods: {
+    check_login() {
+      let token = this.$store.state.token
+      if (token == null) {
+        let nowPath = window.location.href
+        this.$router.push({"name": "user_login", query: {url: nowPath}})
+      }
+    },
     router() {
       return router
     },
@@ -135,6 +142,7 @@ export default defineComponent({
       })
     },
     buy() {
+      this.check_login() 
       let goods = [this.goods_id]
       localStorage.removeItem("goods")
       localStorage.setItem("goods", JSON.stringify(goods));
@@ -239,4 +247,5 @@ export default defineComponent({
   color: rgb(50, 50, 50);
   font-size: 14px;
 }
+
 </style>
