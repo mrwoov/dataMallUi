@@ -6,6 +6,14 @@ let token = store.state.token
 let headers = {
     token: token
 }
+//关闭订单
+export const close = (trade_no) => {
+    return request({
+        url: baseurl + "close?trade_no=" + trade_no,
+        method: "get",
+        headers
+    })
+}
 //下载订单资源
 export const downloadGoods = (orderId) => {
     return request({

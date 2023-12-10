@@ -49,10 +49,12 @@
             <el-tag v-if="scope.row.state===-1" type="info">交易关闭</el-tag>
           </template>
         </el-table-column>
-
         <el-table-column align="center" label="操作" width="200">
           <template v-slot:default="scope">
             <el-button v-if="scope.row.state>=1" @click="get_download(scope.row.id)">下载</el-button>
+            <el-button v-if="scope.row.state===1">去评价</el-button>
+            <el-button v-if="scope.row.state===0">去付款</el-button>
+            <el-button v-if="scope.row.state===0" @click="close_order(scope.row.tradeNo)">关闭订单</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -99,6 +101,16 @@ export default {
     this.check_login()
   },
   methods: {
+    close_order(trade_no) {
+      api_portal_order.close(trade_no).then(res => {
+        if (res.status === 200) {
+          this.$message.success(res.message)
+          this.load()
+          return
+        }
+        this.$message.error(res.errMes)
+      })
+    },
     check_login() {
       let token = this.$store.state.token
       if (token == null) {
