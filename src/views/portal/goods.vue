@@ -36,11 +36,32 @@
             </div>
           </div>
         </div>
+
         <div class="comment-box">
           <span class="comment-title">商品评论</span>
-          <hr class="comment-hr">
+          <div class="head" style="margin-top: 5px">
+            <el-input ref="input"
+                      v-model="addMessage"
+                      placeholder="请输入评论..."
+                      type="text"
+            >
+              <el-button slot="append" type="success" @click="addComment(goods_id)">发表评论</el-button>
+            </el-input>
+          </div>
+
           <div v-if="comment_list.length !==0">
             <div v-for="comment in comment_list" :key="comment.id" style="margin-top:10px;">
+              <el-divider/>
+              <el-dropdown style="float: right;margin-right: 20px">
+                <span class="el-dropdown-link">...<i class="el-icon-arrow-down el-icon--right"></i></span>
+                <el-dropdown-menu slot="dropdown" style="">
+                  <el-dropdown-item @click="">回复</el-dropdown-item>
+                  <el-dropdown-item>
+                    <el-button type="text" @click="DelComment(comment.id)">删除</el-button>
+                  </el-dropdown-item>
+                  <el-dropdown-item @click="">举报</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
               <span style="text-align: center;vertical-align: middle">
                 <el-avatar :size="30" :src="comment.avatar"></el-avatar> 
               </span>
@@ -51,6 +72,7 @@
               <div>
                 {{ comment.message }}
               </div>
+              <div></div>
             </div>
           </div>
           <div v-else>
@@ -61,6 +83,7 @@
       </div>
 
     </div>
+
   </div>
 </template>
 <script>
@@ -71,6 +94,7 @@ import * as api_goods_comment from "@/api/portal/goods_comment"
 import * as api_goods_collection from "@/api/portal/goods_collection"
 import PicShow from "@/components/picShow.vue";
 import router from "@/router";
+import goods from "@/views/portal/goods";
 
 export default defineComponent({
   name: "goods",
@@ -80,14 +104,22 @@ export default defineComponent({
       goods_id: this.$route.params.goods_id,
       goods_data: [],
       comment_list: [],
-      collection_status: false
+      collection_status: false,
+      dialogFormVisible: false,
+      addMessage: ""
+
+
     }
   },
+
+
   created() {
     this.load()
     this.get_comment()
     this.get_collection_status()
   },
+
+
   methods: {
     check_login() {
       let token = this.$store.state.token
@@ -142,14 +174,61 @@ export default defineComponent({
       })
     },
     buy() {
-      this.check_login() 
+      this.check_login()
       let goods = [this.goods_id]
       localStorage.removeItem("goods")
       localStorage.setItem("goods", JSON.stringify(goods));
       this.$router.push({name: "submitOrder"})
-    }
+    },
+    row_style() {
+      return "text-align:center";
+    },
+
+    saveComment() {
+      api_goods_comment.send(id).then(res => {
+        if (res.status !== 200) {
+          this.$message.error(res.message)
+          return
+        }
+        this.$message.success(res.message)
+        this.dialogFormVisible = false
+        this.load()
+      })
+    },
+
+    addComment(goodsId) {
+      if (this.addMessage.length === 0) {
+        this.$message.error("请输入评论")
+        return
+      }
+      api_goods_comment.send(goodsId, this.addMessage).then(res => {
+        if (res.status != 200) {
+          this.$message.error(res.message)
+          return
+        }
+        this.$message.success(res.message)
+        this.dialogFormVisible = false
+        this.load()
+      })
+    },
+
+    DelComment(comment_id) {
+      api_goods_comment.del(comment_id).then(res => {
+        if (res.status != 200) {
+          this.$message.error(res.message)
+          return
+        }
+        this.$message.success(res.message)
+        this.load()
+      })
+    },
+
   }
+
+
 })
+
+
 </script>
 <style scoped>
 .comment-hr {
@@ -169,7 +248,7 @@ export default defineComponent({
 }
 
 .body {
-  background-color: rgb(231, 223, 218);
+  background-color: rgb(243, 244, 246);
   padding: 5px 20px;
 }
 
@@ -247,5 +326,18 @@ export default defineComponent({
   color: rgb(50, 50, 50);
   font-size: 14px;
 }
+
+
+/* 鼠标经过字体加粗 */
+.head button:hover {
+  font-weight: 600;
+}
+
+
+/* 鼠标经过字体加粗 */
+.reply-comment button:hover {
+  font-weight: 600;
+}
+
 
 </style>

@@ -28,19 +28,16 @@ export const release = (data) => {
 //用户下架商品
 export const releaseOff = (goodsId) => {
     return request({
-        url: baseurl + "/release_off",
+        url: baseurl + "/release_off?goodsId=" + goodsId,
         method: "post",
         headers: headers,
-        data: {
-            goodsId: goodsId
-        }
     })
 }
 
 //用户上架商品
 export const releaseOn = (goodsId) => {
     return request({
-        url: baseurl + "/release_on",
+        url: baseurl + "/release_on?goodsId=" + goodsId,
         method: "post",
         headers: headers,
         data: {

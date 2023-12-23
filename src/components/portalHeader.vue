@@ -137,6 +137,10 @@ export default {
       return "http://localhost:8080/categories/" + href;
     },
     search() {
+      if (this.keyword.length < 2) {
+        this.$message.error("请输入不少于2个字符！")
+        return
+      }
       this.$router.push({
         path: '/search',
         query: {

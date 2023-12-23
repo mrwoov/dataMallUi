@@ -58,7 +58,14 @@
     <el-dialog :title="title" :visible.sync="dialogFormVisible" width="30%">
       <el-form label-width="80px" size="small">
         <el-form-item label="用户名">
-          <el-input v-model="add_form.username" :disabled="username_disable" autocomplete="off"></el-input>
+          <el-autocomplete
+              v-model="add_form.username"
+              :fetch-suggestions="userQuerySearch"
+              :trigger-on-focus="false"
+              class="inline-input"
+              placeholder="请输入用户名"
+              @select="handleSelect"
+          ></el-autocomplete>
         </el-form-item>
         <el-form-item label="角色">
           <el-select v-model="add_form.role" placeholder="请选择">
@@ -83,6 +90,7 @@
 import Breadcrumb from "@/components/breadcrumb.vue";
 import * as api_admin from "@/api/admin/admin"
 import * as api_role from "@/api/admin/role"
+import * as api_admin_account from "@/api/admin/account"
 
 export default {
   name: "admin_admin",
@@ -107,7 +115,8 @@ export default {
       table_data: [],
       dialogFormVisible: false,
       role_list: [],
-      username_disable: true
+      username_disable: true,
+      user_list: []
     }
   },
   created() {
@@ -115,10 +124,22 @@ export default {
     this.getRoleList()
   },
   methods: {
+
     load() {
       api_admin.admin_query(this.search_form, this.page_control.pageSize, this.page_control.pageNum).then(res => {
         this.table_data = res.data.records
         this.page_control.total = res.data.total
+      })
+    },
+    userQuerySearch(queryString, cb) {
+      let username = this.add_form.username
+      api_admin_account.admin_query_username(username).then(res => {
+        let data = []
+        res.data.forEach(user => {
+          let temp = {"value": user.username}
+          data.push(temp)
+        })
+        cb(data)
       })
     },
     saveOrUpdate() {

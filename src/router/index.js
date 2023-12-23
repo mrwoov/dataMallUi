@@ -30,11 +30,10 @@ const routes = [{
     }, {
         path: "/user/order", name: "myOrder", component: () => import("@/views/user/myOrder.vue")
     }, {
-        path: "/user/collection",
-        name: "myCollection",
-        component: () => import("@/views/user/myCollection.vue")
-    }, {path: "/user/reg", name: "user_reg", component: () => import("@/views/portal/reg.vue")}
-        , {path: "/user/forget", name: "user_forget", component: () => import("@/views/portal/forget.vue")}]
+        path: "/user/collection", name: "myCollection", component: () => import("@/views/user/myCollection.vue")
+    }, {path: "/user/reg", name: "user_reg", component: () => import("@/views/portal/reg.vue")}, {
+        path: "/user/forget", name: "user_forget", component: () => import("@/views/portal/forget.vue")
+    }]
 }, {
     path: "/admin",
     component: () => import("../views/admin/adminManage.vue"),
@@ -67,7 +66,12 @@ const routes = [{
         path: "orders_detail",
         name: "admin_order_detail",
         component: () => import("../views/admin/adminOrderDetail.vue")
-    }]
+    }, {
+        path: 'user',
+        name: "admin_user",
+        component: () => import("@/views/admin/adminManageAccount.vue")
+    }
+    ]
 }]
 
 let router = new VueRouter({

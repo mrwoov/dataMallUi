@@ -8,7 +8,6 @@ import request from "@/utils/request";
 import VueCookies from "vue-cookies";
 import './assets/iconfont.css'
 import store from "./store"
-import './router/permission'
 
 Vue.config.productionTip = false
 Vue.use(VueCookies)

@@ -75,7 +75,7 @@ import store from "@/store";
 import router from "@/router";
 
 export default {
-  name: "",
+  name: "goodsRelease",
   data() {
     return {
       fileList: [],
@@ -84,7 +84,7 @@ export default {
       images: [],
       uploadHeaders: {
         token: store.state.token
-      }
+      },
     }
   },
   created() {

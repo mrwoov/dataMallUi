@@ -1,5 +1,3 @@
-<script setup>
-</script>
 <template>
   <div>
     <div v-if="this.data.length === 0" style="text-align: center;margin-top:200px ">

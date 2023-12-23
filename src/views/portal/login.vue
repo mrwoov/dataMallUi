@@ -54,7 +54,6 @@ export default {
   },
   methods: {
     load() {
-      console.log(this.$store.state.token)
       if (this.$store.state.token !== undefined && this.$store.state.token !== null) {
         alert("您已登录！");
         if (this.$route.query.url !== "" && this.$route.query.url !== undefined) {
