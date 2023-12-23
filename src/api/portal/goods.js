@@ -48,16 +48,12 @@ export const releaseOn = (goodsId) => {
 //用户删除商品
 export const del = (goodsId) => {
     return request({
-        url: baseurl + "/",
+        url: baseurl + "/?goodsId=" + goodsId,
         method: "delete",
         headers: headers,
-        data: {
-            goodsId: goodsId
-        }
     })
 }
 
-//todo:【前端】发起评论，删除评论，举报评论
 //游客获取单个商品信息
 export const getInfo = (goodsId) => {
     return request({

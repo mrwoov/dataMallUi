@@ -51,7 +51,7 @@
               <!-- v-if：指令，根据表达式的真假条件来渲染元素。若表达式为真，则元素会被渲染到DOM中-->
               <el-button v-else @click="freeze(goods.id)">下架</el-button>
               <!-- v-else:指令，用于v-if和v-else-if配合使用，以根据条件渲染不同的元素。v-else指令总是与前面的v-if或v-else-if配对使用，它会在前面的条件为假时被渲染-->
-              <el-button>删除</el-button>
+              <el-button @click="del(goods.id)">删除</el-button>
             </div>
           </div>
         </el-card>
@@ -79,6 +79,16 @@ export default {
     this.get_user_info()      //获取当前页面username的相关信息
   },
   methods: {
+    del(goodsId) {
+      api_portal_goods.del(goodsId).then(res => {
+        if (res.status !== 200) {    //状态码是否为200
+          this.$message.error(res.errorMsg)    //出错：打印res里的errorMsg
+          return
+        }
+        this.$message.success(res.message)
+        this.get_user_info()
+      })
+    },
     freeze(goodsId) {      //下架
       api_portal_goods.releaseOff(goodsId).then(res => {   //调用api....里的getUserInfo函数，传用户名进去   .then:钩子函数   每次请求返回的东西
         if (res.status !== 200) {    //状态码是否为200
