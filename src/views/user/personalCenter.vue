@@ -117,7 +117,7 @@ export default {
       }     //登录成功后，返回当前页面   query：参数
     },
     get_user_info() {
-      api_portal_account.getUserInfo(this.username).then(res => {   //调用api....里的getUserInfo函数，传用户名进去   .then:钩子函数
+      api_portal_account.getUserInfo(this.username).then(res => {   //调用api....里的getUserInfo函数，传用npm户名进去   .then:钩子函数
         this.userInfo = res.data    //返回值赋给res  data:用户信息
         this.getUserIsOne(res.data.id)    //判断当前用户名和当前进入页面的用户是否为同一个人
       })

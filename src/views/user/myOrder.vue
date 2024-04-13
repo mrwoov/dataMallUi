@@ -52,8 +52,10 @@
         <el-table-column align="center" label="操作" width="200">
           <template v-slot:default="scope">
             <el-button v-if="scope.row.state>=1" @click="get_download(scope.row.id)">下载</el-button>
-            <el-button v-if="scope.row.state===1">去评价</el-button>
-            <el-button v-if="scope.row.state===0">去付款</el-button>
+            <el-button v-if="scope.row.state===1"
+                       @click="router().push({name:'goods',params:{goodsId:scope.row.goodsId}})">去评价
+            </el-button>
+            <el-button v-if="scope.row.state===0" @click="submit(scope.row.tradeNo)">去付款</el-button>
             <el-button v-if="scope.row.state===0" @click="close_order(scope.row.tradeNo)">关闭订单</el-button>
           </template>
         </el-table-column>
@@ -76,6 +78,7 @@
 <script>
 import * as api_portal_order from "@/api/portal/order"
 import * as api_portal_goodsFiles from "@/api/portal/goods_file"
+import router from "@/router";
 
 export default {
   name: "myOrder",
@@ -101,6 +104,9 @@ export default {
     this.check_login()
   },
   methods: {
+    router() {
+      return router
+    },
     close_order(trade_no) {
       api_portal_order.close(trade_no).then(res => {
         if (res.status === 200) {
@@ -158,6 +164,10 @@ export default {
       this.page_control.pageNum = pageNum
       this.load()
     },
+    submit(trade_no) {
+      let host = 'http://' + document.location.hostname
+      window.location.href = host + ":9000/order/order/pay?trade_no=" + trade_no + "&return_url=" + host + ":8080/pay_success"
+    }
   }
 }
 </script>

@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="admin-query">
-
       <!-- 面包屑导航 -->
       <breadcrumb :title="title"/>
       <!-- 查询表单 -->
@@ -24,7 +23,9 @@
         <el-table-column label="ID" prop="id" width="80"></el-table-column><!--prop显示数据字段-->
         <el-table-column label="头像">
           <template v-slot="scope">
-            <el-avatar :size="size" :src="scope.row.avatar"></el-avatar>
+            <el-avatar
+
+                :src="scope.row.avatar" run></el-avatar>
           </template>
         </el-table-column>
         <el-table-column label="用户名" prop="username"></el-table-column>
@@ -50,7 +51,7 @@ import Breadcrumb from "@/components/breadcrumb.vue";
 import * as api_account from "@/api/admin/account"
 
 export default {
-  name: "admin_query",
+  name: "admin_user",
   components: {Breadcrumb},
   data() {
     return {
@@ -60,7 +61,6 @@ export default {
         role: ""
       },
       table_data: [],
-      dialogFormVisible: false,
       role_list: [],
       username_disable: true,
       page_control: {

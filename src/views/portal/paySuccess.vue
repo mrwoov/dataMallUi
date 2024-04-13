@@ -51,7 +51,7 @@ export default {
 
 <style scoped>
 .body {
-  background-color: rgb(231, 223, 218);
+  background-color: rgba(215, 215, 215, 0.21);
   padding: 5px 20px;
   height: 100%;
   width: 100%;

@@ -124,11 +124,12 @@ export default {
     this.getRoleList()
   },
   methods: {
-
     load() {
       api_admin.admin_query(this.search_form, this.page_control.pageSize, this.page_control.pageNum).then(res => {
         this.table_data = res.data.records
         this.page_control.total = res.data.total
+      }).catch(e => {
+        this.$message.error("查询错误，请检查用户名是否正确或刷新后重试")
       })
     },
     userQuerySearch(queryString, cb) {

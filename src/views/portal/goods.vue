@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="body">
-      <div class="body-box">
+      <div v-if="this.goods_data.length===0">
+        <el-empty description="当前商品不可见"/>
+      </div>
+      <div v-else class="body-box">
         <div class="goods-box">
           <div class="img-box">
             <img :src="goods_data.picIndex" alt="" class="goods-img" style="width: 300px;height: 200px">
@@ -79,11 +82,8 @@
             <el-empty description="暂无评论"></el-empty>
           </div>
         </div>
-
       </div>
-
     </div>
-
   </div>
 </template>
 <script>

@@ -33,6 +33,8 @@ const routes = [{
         path: "/user/collection", name: "myCollection", component: () => import("@/views/user/myCollection.vue")
     }, {path: "/user/reg", name: "user_reg", component: () => import("@/views/portal/reg.vue")}, {
         path: "/user/forget", name: "user_forget", component: () => import("@/views/portal/forget.vue")
+    }, {
+        path: "/test", name: "test", component: () => import("@/views/test.vue")
     }]
 }, {
     path: "/admin",
