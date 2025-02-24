@@ -57,6 +57,11 @@ const router = createRouter({
       path: '/excel',
       children: [
         {
+          path: '',
+          name: 'excelHomePage',
+          component: () => import('../views/ExcelAppHomePage.vue'),
+        },
+        {
           path: 'header/edit/:appid',
           name: 'excelHeaderEdit',
           component: () => import('../views/ExcelHeaderEdit.vue'),
@@ -107,11 +112,21 @@ const router = createRouter({
       path: '/order',
       children: [
         {
+          path: '',
+          name: 'orderPage',
+          component: () => import('../views/Order.vue'),
+        },
+        {
           path: 'submit',
           name: 'orderSubmit',
           component: () => import('../views/OrderSubmit.vue'),
-        }
-      ]
+        },
+        {
+          path: 'pay_success',
+          name: 'paySuccess',
+          component: () => import('../views/OrderPaySuccess.vue'),
+        },
+      ],
     },
     {
       path: '/search',
@@ -122,6 +137,72 @@ const router = createRouter({
       path: '/help',
       name: 'help',
       component: () => import('../views/Help.vue'),
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      children: [
+        {
+          path: '',
+          name: 'adminHome',
+          component: () => import('../views/AdminIndex.vue'),
+        },
+        {
+          path: 'admins',
+          name: 'manageAdmins',
+          component: () => import('../views/ManageAdmin.vue'),
+        },
+        {
+          path: 'roles',
+          name: 'manageRoles',
+          component: () => import('../views/ManageRole.vue'),
+        },
+        {
+          path: 'auths',
+          name: 'manageAuth',
+          component: () => import('../views/ManageAuth.vue'),
+        },
+        {
+          path: 'users',
+          name: 'manageUsers',
+          component: () => import('../views/ManageUser.vue'),
+        },
+        {
+          path: 'goods',
+          name: 'manageGoods',
+          component: () => import('../views/ManageGoods.vue'),
+        },
+        {
+          path: 'goods_categories',
+          name: 'manageGoodsCategories',
+          component: () => import('../views/ManageGoodsCategory.vue'),
+        },
+        {
+          path: 'orders',
+          name: 'manageOrders',
+          component: () => import('../views/ManageOrder.vue'),
+        },
+        {
+          path: 'excel_apps',
+          name: 'manageExcelApps',
+          component: () => import('../views/ManageExcelApp.vue'),
+        },
+        {
+          name: 'manageBlog',
+          path: 'blogs',
+          component: () => import('../views/ManageBlog.vue'),
+        },
+        {
+          name: 'manageCustomer',
+          path: 'customers',
+          component: () => import('../views/ManageCustomer.vue'),
+        },
+        {
+          name: 'manageCarousel',
+          path: 'carousels',
+          component: () => import('../views/ManageCarousel.vue'),
+        },
+      ],
     },
   ],
 })

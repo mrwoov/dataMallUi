@@ -15,8 +15,10 @@
 </template>
 <script setup lang="ts">
 import FrontHeader from '@/components/FrontHeader.vue'
+import { useLoginUserStore } from '@/stores/useLoginUserStore.ts'
 
-
+const loginUser = useLoginUserStore()
+loginUser.checkUserTokenNoGoLogin()
 </script>
 
 <style scoped>

@@ -70,11 +70,11 @@ const initWebSocket = () => {
   }
 
   ws.onerror = () => {
-    message.error('WebSocket 连接错误')
+    message.error('客服服务连接错误')
   }
 
   ws.onclose = () => {
-    message.warning('WebSocket 连接已断开')
+    message.warning('客服服务连接已断开')
     ws = null // 重置 ws，允许重新连接
   }
 }
@@ -82,7 +82,7 @@ const initWebSocket = () => {
 // 发送消息
 const sendData = (type: string, content: string) => {
   if (!ws || ws.readyState !== WebSocket.OPEN) {
-    message.error('WebSocket 未连接')
+    message.error('客服服务未连接')
     return
   }
   ws.send(JSON.stringify({ type, content, token: loginUser.loginUser.token }))

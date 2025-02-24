@@ -55,9 +55,23 @@
                       <a :href="userCenterLink()">个人中心</a>
                     </a-menu-item>
                     <a-menu-item key="2">
-                      <a href="/setting">设置</a>
+                      <a href="/order">我的订单</a>
                     </a-menu-item>
                     <a-menu-item key="3" @click="logout">退出登录</a-menu-item>
+                    <!-- 修改处：只要是管理员，都显示后台入口；如果后台地址还未获取，则显示加载中状态 -->
+                    <a-menu-item
+                      v-if="loginUser.loginUser.token !== '' && loginUser.loginUser.admin"
+                      key="4"
+                    >
+                      <template v-if="adminPath">
+                        <a :href="adminPath">后台管理</a>
+                      </template>
+                      <template v-else>
+                        <a href="javascript:void(0)" @click="getAdminPath">
+                          后台管理 (加载中...)
+                        </a>
+                      </template>
+                    </a-menu-item>
                   </a-menu>
                 </template>
                 <a-avatar
@@ -76,20 +90,62 @@
     </a-row>
   </div>
 </template>
+
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import type { MenuProps } from 'ant-design-vue'
 import { useLoginUserStore } from '@/stores/useLoginUserStore.ts'
+import request from '@/request.ts'
 
+const adminPath = ref('')
 const loginUser = useLoginUserStore()
+
+// 获取后台管理地址
+const getAdminPath = () => {
+  if (loginUser.loginUser.token === '' || loginUser.loginUser.admin === false) {
+    return
+  }
+  request.get('/admin/admins/adminPath').then((res) => {
+    // if (res.code === 200) {
+    //   adminPath.value =
+    //     'http://' +
+    //     res.data +
+    //     '/login?token=' +
+    //     loginUser.loginUser.token +
+    //     '&redirect=' +
+    //     window.location.href
+    // }
+    if (res.code === 200) {
+      adminPath.value = 'http://' + res.data + '/admin'
+    }
+  })
+}
+
+// 监听登录状态变化，确保管理员状态更新后及时获取后台地址
+watch(
+  () => loginUser.loginUser,
+  (newUser) => {
+    if (newUser.token && newUser.admin && adminPath.value === '') {
+      getAdminPath()
+    } else if (!newUser.token || !newUser.admin) {
+      adminPath.value = ''
+    }
+  },
+  { deep: true, immediate: true },
+)
+
+onMounted(() => {
+  getAdminPath()
+})
+
 const userCenterLink = () => {
   return '/user/' + loginUser.loginUser.account_id
 }
+
 const items = ref<MenuProps['items']>([
   {
     key: '/',
-    //icon: () => h(HomeOutlined),
     label: '主页',
     title: '主页',
   },
@@ -120,16 +176,18 @@ watch(router.currentRoute, () => {
   inSearchPage.value = router.currentRoute.value.path !== '/search'
 })
 inSearchPage.value = router.currentRoute.value.path !== '/search'
+
 // 路由跳转事件
 const doMenuClick = ({ key }: { key: string }): void => {
   router.push({
     path: key,
   })
 }
+
 // 当前选中的菜单项
 const current = ref<string[]>([])
 // 监听路由变化, 更新当前选中的菜单项
-router.afterEach((to, from, next) => {
+router.afterEach((to) => {
   current.value = [to.path]
 })
 
@@ -144,6 +202,7 @@ const onSearch = (value: string) => {
 const publishTypeMenuClick = ({ key }: { key: string }) => {
   console.log(key)
 }
+
 const logout = () => {
   loginUser.logout()
   router.push({
@@ -151,6 +210,7 @@ const logout = () => {
   })
 }
 </script>
+
 <style scoped>
 #frontHeader .title-bar {
   line-height: 50px;
@@ -189,5 +249,11 @@ const logout = () => {
   margin: 0 10px;
   display: flex;
   align-items: center;
+}
+
+/* 如需要可以增加禁用链接的样式 */
+.disabled-link {
+  pointer-events: none;
+  opacity: 0.6;
 }
 </style>

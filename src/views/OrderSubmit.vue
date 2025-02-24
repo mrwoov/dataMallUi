@@ -21,7 +21,7 @@ const generateParams = () =>{
   }
   if (type.value === 'goods'){
     params['goods_id'] = id.value
-  }else if (type.value === 'cart'){
+  }else if (type.value === 'app'){
     params['app_id'] = id.value
   }
   return params

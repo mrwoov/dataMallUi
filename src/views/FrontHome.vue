@@ -5,7 +5,7 @@
         <div class="portalShow-box">
           <a-carousel autoplay class="carousel" dot-position="bottom">
             <div v-for="item in portalShow" :key="item.id" class="portalShow-pic">
-              <a :href="item_href(item.id)" class="portalShow-link">
+              <a :href="item.url" class="portalShow-link">
                 <img :src="item.picIndex" alt="" class="portalShow-img" />
               </a>
             </div>
@@ -52,13 +52,14 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { getPortalIndex } from '@/api/goods/api/goodsController.ts'
+import { onMounted, ref } from 'vue'
+import request from '@/request.ts'
 
 const portalShow = ref([])
-const getPortalShow = async () => {
-  const res = await getPortalIndex()
-  portalShow.value = res.data
+const getPortalShow =  () => {
+  request.get('/admin/carousel').then(res => {
+    portalShow.value = res.data
+  })
 }
 getPortalShow()
 
@@ -89,7 +90,6 @@ html, body, #app, #frontHome {
 
 /* 轮播图区域 */
 .portalShow-box {
-  display: flex;
   justify-content: center;
   align-items: center;
 }

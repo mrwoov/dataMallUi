@@ -4,7 +4,7 @@
       <template #renderItem="{ item }">
         <GoodsSearchListItem
           v-if="item.type == 'goods' && (props.isUserCenter || item.goods.state == 0)"
-          :item="item.goods"
+          :item="item.goods" :isUserCenter="props.isUserCenter"
         />
         <ExcelAppSearchListItem
           v-if="item.type == 'excel_app' && (props.isUserCenter || item.excelApp.state == 0)"

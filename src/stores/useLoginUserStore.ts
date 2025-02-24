@@ -10,7 +10,7 @@ export const useLoginUserStore = defineStore('loginUser', () => {
     username: '未登录',
     token: '',
     avatar: '',
-    isAdmin: false,
+    admin: false,
   })
 
   function setLoginUser(user: any) {
@@ -36,6 +36,19 @@ export const useLoginUserStore = defineStore('loginUser', () => {
       }
     })
   }
+  function checkUserTokenNoGoLogin(){
+    if (loginUser.value.token === ''){
+      return  false
+    }
+    checkToken().then((res) => {
+      if (res.code !== 200) {
+        logout()
+        return false
+      }
+      res.data.token = loginUser.value.token
+      setLoginUser(res.data)
+    })
+  }
   function checkUserToken(){
     if (loginUser.value.token === ''){
       return  goLogin()
@@ -49,7 +62,7 @@ export const useLoginUserStore = defineStore('loginUser', () => {
       setLoginUser(res.data)
     })
   }
-  return { loginUser, setLoginUser, logout,checkUserToken}
+  return { loginUser, setLoginUser, logout,checkUserToken,checkUserTokenNoGoLogin}
 }, {
   persist: true // 开启持久化
 })

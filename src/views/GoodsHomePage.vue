@@ -22,7 +22,9 @@ const limit = ref(10)
 const total = ref(0)
 const getGoodsList = () => {
   request
-    .post('/goods/goods/page?pageNum=' + page.value + '&pageSize=' + limit.value, { categoryName })
+    .post('/goods/goods/page?pageNum=' + page.value + '&pageSize=' + limit.value, {
+      categoryName: categoryName.value
+    })
     .then((res) => {
       goodsList.value = res.data.records
       total.value = res.data.total

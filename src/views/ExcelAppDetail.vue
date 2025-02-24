@@ -157,7 +157,7 @@ const buy = () => {
     router.push({ path: '/login' })
     return
   }
-  router.push({ path: '/order', query: { id: excelAppId.value, type: 'app' } })
+  router.push({ path: '/order/submit', query: { id: excelAppId.value, type: 'app' } })
 }
 
 getExcelAppDetail()
@@ -175,18 +175,22 @@ watch(
 
 <style scoped>
 #excelAppDetail {
-  padding: 20px 20%;
+  padding: 20px 10%;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .excelAppDetail-box {
   display: flex;
   justify-content: space-between;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .app-img {
   width: 600px;
   height: 400px;
-  margin: 0 auto;
+  margin: 0;
+  object-fit: cover;
 }
 
 .info-box {
@@ -195,44 +199,49 @@ watch(
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 0 auto;
   padding: 20px;
 }
 
-.app-title {
-  font-size: 24px;
+.app-title p {
+  font-size: 28px;
   font-weight: bold;
 }
 
 .app-price {
-  margin-top: 20px;
+  margin-top: 10px;
+  font-size: 20px;
 }
 
 .money-char {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .money {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: bold;
-  color: orangered;
+  color: #ff8c00;
 }
 
 .app-desc {
-  margin-top: 20px;
+  margin-top: 10px;
+  line-height: 1.6;
 }
 
 .option-box {
   margin-top: 20px;
 }
 
+.option-box .ant-btn-primary {
+  background-color: #007aff;
+  border-color: #007aff;
+}
+
 .api-doc-box {
   margin-top: 40px;
   padding: 20px;
-  border: 1px solid #e8e8e8;
-  border-radius: 4px;
-  background: #fafafa;
+  border: 1px solid ;
+  border-radius: 6px;
 }
 
 .api-doc-box h2 {
@@ -241,7 +250,7 @@ watch(
 
 .api-doc-box h3 {
   margin-top: 20px;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .api-doc-box p {
@@ -252,27 +261,31 @@ watch(
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
+  background: #2c2c2c;
 }
 
 .api-doc-box table,
 .api-doc-box th,
 .api-doc-box td {
-  border: 1px solid #ddd;
+  border: 1px solid #555;
 }
 
 .api-doc-box th,
 .api-doc-box td {
   padding: 8px;
   text-align: left;
+  color: #e0e0e0;
 }
 
 .api-doc-box pre {
-  background: #f5f5f5;
-  padding: 10px;
-  overflow: auto;
-  border-radius: 5px;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  background-color: #1e1e1e;
+  color: #dcdcdc;
+  padding: 12px 16px;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: "Menlo", "Consolas", "Monaco", monospace;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .api-doc-box ul {
@@ -283,4 +296,5 @@ watch(
   list-style-type: disc;
   margin-bottom: 5px;
 }
+
 </style>

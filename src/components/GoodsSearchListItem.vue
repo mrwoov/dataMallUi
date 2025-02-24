@@ -20,7 +20,12 @@
       <div>
         <a :href="goods_link(item.id)">
           <div>
-            <p class="title">{{ item.name }}</p>
+            <p class="title">
+              {{ item.name }}
+              <a-tag color="red" v-if="item.state ==-3">
+                审核中
+              </a-tag>
+            </p>
             <p class="detail">{{ item.detail }}</p>
             <p class="price">￥{{ item.money }}</p>
           </div>
@@ -42,7 +47,8 @@ import { StarOutlined } from '@ant-design/icons-vue'
 import ShareComponent from '@/components/ShareComponent.vue'
 
 const props = defineProps({
-  item: {}
+  item: {},
+  isUserCenter: false
 })
 const goods_link = (id: number) => {
   return window.document.location.origin + '/goods/' + id
