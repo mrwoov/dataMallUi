@@ -43,7 +43,7 @@ let ws: WebSocket | null = null
 const initWebSocket = () => {
   if (ws) return // 避免重复连接
 
-  ws = new WebSocket('ws://localhost:9000/customerService/ws/customer')
+  ws = new WebSocket('ws://api.wooovi.cn/customerService/ws/customer')
 
   ws.onopen = () => sendData('init', '建立连接')
 

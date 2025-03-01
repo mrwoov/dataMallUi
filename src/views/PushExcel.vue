@@ -109,8 +109,8 @@ const images = ref<string[]>([])
 
 // 上传接口地址与请求头
 const uploadHeaders = { token: loginUser.loginUser.token }
-const fileUploadAction = 'http://localhost:9000/excel/excelApp/upload'
-const picUploadAction = 'http://localhost:9000/pic/picture/user/upload'
+const fileUploadAction = 'http://api.wooovi.cn/excel/excelApp/upload'
+const picUploadAction = 'http://api.wooovi.cn/pic/picture/user/upload'
 
 const release = () => {
   const data = {

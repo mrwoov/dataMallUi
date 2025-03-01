@@ -9,6 +9,10 @@
     </a-layout-content>
     <a-layout-footer class="footer">
       dataMall ©2025 Created by woov
+      <div>
+        <img src="@/assets/beian.png" style="width: 15px" />
+        <a href="https://beian.mps.gov.cn/#/query/webSearch?code=50009802002688" rel="noreferrer" target="_blank">渝公网安备50009802002688号</a>
+      </div>
     </a-layout-footer>
   </a-layout>
 </div>

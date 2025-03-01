@@ -5,6 +5,7 @@ import { useLoginUserStore } from '@/stores/useLoginUserStore.ts'
 // 创建 Axios 实例
 const myAxios = axios.create({
   baseURL: 'http://localhost:9000',
+  //baseURL:'http://api.wooovi.cn',
   timeout: 60000
 })
 
@@ -12,7 +13,6 @@ const myAxios = axios.create({
 myAxios.interceptors.request.use(
   function (config) {
     config.headers['Content-Type'] = 'application/json;charset=utf-8'
-    // Do something before request is sent
     const token = useLoginUserStore().loginUser.token
     if (token != null && token !== '') {
       config.headers.token = token

@@ -211,7 +211,7 @@ onMounted(() => {
     ],
     upload: {
       accept: '*',
-      url: 'http://localhost:9000/pic/picture/user/upload',
+      url: 'http://api.wooovi.cn/pic/picture/user/upload',
       fieldName: 'file',
       headers: {
         token: loginUser.loginUser.token,

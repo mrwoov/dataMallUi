@@ -7,12 +7,12 @@
           :item="item.goods" :isUserCenter="props.isUserCenter"
         />
         <ExcelAppSearchListItem
-          v-if="item.type == 'excel_app' && (props.isUserCenter || item.excelApp.state == 0)"
+          v-if="item.type == 'excel_app' && (props.isUserCenter || item.excelApp.status == 0)"
           :item="item.excelApp"
           :isUserCenter="props.isUserCenter"
         />
         <BlogListItem
-          v-if="item.type == 'blog' && (props.isUserCenter || item.blogVO.status == 0)"
+          v-if="item.type == 'blog' && (props.isUserCenter || item.blogVO.state == 0)"
           :item="item.blogVO"
         />
         <a-list-item v-if="item.type == 'user' && item.userEsDTO.isDelete == 0">

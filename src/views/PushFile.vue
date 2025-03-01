@@ -117,8 +117,8 @@ const loginUser = useLoginUserStore()
 loginUser.checkUserToken()
 // 上传接口地址与请求头
 const uploadHeaders = { token: loginUser.loginUser.token }
-const fileUploadAction = 'http://localhost:9000/goods/goodsFiles/user/upload_file'
-const picUploadAction = 'http://localhost:9000/pic/picture/user/upload'
+const fileUploadAction = 'http://api.wooovi.cn/goods/goodsFiles/user/upload_file'
+const picUploadAction = 'http://api.wooovi.cn/pic/picture/user/upload'
 
 // 获取资源分类列表
 const getCategoriesList = () => {
